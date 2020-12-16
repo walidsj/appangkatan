@@ -67,18 +67,18 @@
                      $IPK = $arrayIP / $arraySemester;
                      ?>
                      <!-- Content Column -->
-                     <div class="col-lg-6 mb-4">
+                     <div class="col-lg-6">
                         <div class="row">
-                           <div class="col-6 mb-4">
-                              <div class="card bg-success text-white shadow">
+                           <div class="col-6">
+                              <div class="card bg-success text-white shadow  mb-4">
                                  <div class="card-body">
                                     IP Kumulatif
                                     <div class="font-weight-bold"><?= number_format((float)$IPK, 2); ?></div>
                                  </div>
                               </div>
                            </div>
-                           <div class="col-6 mb-4">
-                              <div class="card bg-info text-white shadow">
+                           <div class="col-6">
+                              <div class="card bg-info text-white shadow  mb-4">
                                  <div class="card-body">
                                     Mata Kuliah
                                     <div class="font-weight-bold"><?= $arrayMatkul; ?></div>

@@ -69,7 +69,7 @@
                      <!-- Content Column -->
                      <div class="col-lg-6 mb-4">
                         <div class="row">
-                           <div class="col-lg-6 mb-4">
+                           <div class="col-6 mb-4">
                               <div class="card bg-success text-white shadow">
                                  <div class="card-body">
                                     IP Kumulatif
@@ -77,8 +77,8 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-lg-6 mb-4">
-                              <div class="card bg-primary text-white shadow">
+                           <div class="col-6 mb-4">
+                              <div class="card bg-info text-white shadow">
                                  <div class="card-body">
                                     Jumlah Mata Kuliah
                                     <div class="font-weight-bold"><?= $arrayMatkul; ?></div>

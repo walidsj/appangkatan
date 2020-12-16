@@ -21,7 +21,7 @@
                      <div class="col-12">
                         <div class="p-5">
                            <div class="text-center">
-                              <img src="<?= base_url(); ?>public/assets/img/icon/heraldic.png" width="72">
+                              <img src="<?= base_url(); ?>public/assets/img/icon/shield.png" width="72">
                               <h1 class="h4 text-gray-900 mb-4 mt-2">Login</h1>
                            </div>
                            <?= form_open(current_url()); ?>

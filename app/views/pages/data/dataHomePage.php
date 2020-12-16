@@ -106,7 +106,7 @@
                                        <?= form_close(); ?>
                                     <?php else : ?>
                                        <div class="form-group text-center mt-3 mb-4">
-                                          <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/castle.png" width="144">
+                                          <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
                                        </div>
                                        <div class="form-group text-center">
                                           <h4>Pilih Semester</h4>

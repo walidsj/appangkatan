@@ -109,7 +109,7 @@
                                           <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
                                        </div>
                                        <div class="form-group text-center">
-                                          <h4>Pilih Semester</h4>
+                                          <h4 class="mb-0">Pilih Semester</h4>
                                           <h5>Data Not Found</h5>
                                        </div>
                                     <?php endif; ?>

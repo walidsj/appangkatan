@@ -80,7 +80,7 @@
                            <div class="col-6 mb-4">
                               <div class="card bg-info text-white shadow">
                                  <div class="card-body">
-                                    Jumlah Mata Kuliah
+                                    Mata Kuliah
                                     <div class="font-weight-bold"><?= $arrayMatkul; ?></div>
                                  </div>
                               </div>

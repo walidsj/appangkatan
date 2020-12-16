@@ -24,7 +24,7 @@
                                  <div class="col-xl-10">
                                     <div class="text-center text-xl-left text-xxl-center px-4 mb-4 mb-xl-0">
                                        <h1 class="text-primary mt-3">Halo, <?= $userSession->samaranUser; ?>!</h1>
-                                       <p class="text-gray-700 mb-0">Portal ini tidak menyimpan data pribadi kamu dan data yang kamu masukkan sangat dirahasiakan. Data yang terlihat di publik hanya nama samaran kamu, yaitu <strong><?= $userSession->samaranUser; ?> (<?= $userSession->namaProdi; ?>)</strong></p>
+                                       <p class="text-gray-700 mb-0">Portal ini tidak menyimpan data pribadi kamu dan data yang kamu masukkan sangat dirahasiakan. Data yang terlihat di publik hanya nama samaran <strong><?= $userSession->samaranUser; ?> (<?= $userSession->namaProdi; ?>)</strong></p>
                                     </div>
                                  </div>
                               </div>

@@ -69,7 +69,7 @@
                      <!-- Content Column -->
                      <div class="col-lg-6">
                         <div class="row">
-                           <div class="col-6">
+                           <div class="col-12 col-md-6">
                               <div class="card bg-success text-white shadow  mb-4">
                                  <div class="card-body">
                                     IP Kumulatif
@@ -77,7 +77,7 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-6">
+                           <div class="col-12 col-md-6">
                               <div class="card bg-info text-white shadow  mb-4">
                                  <div class="card-body">
                                     Mata Kuliah

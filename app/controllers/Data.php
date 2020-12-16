@@ -24,7 +24,7 @@ class Data extends CI_Controller
 
 		$validate = $this->form_validation;
 
-		$data['title'] = 'Data Nilai';
+		$data['title'] = 'Data Indeks Prestasi';
 
 		$data['userSession'] = $this->userSession;
 

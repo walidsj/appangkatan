@@ -27,12 +27,19 @@
                            <div class="card-body">
                               <?= form_open(current_url() . '?action=delete&id=' . $semesterItem->idSemester); ?>
                               <div class="form-group">
+                                 <p class="text-danger">Dengan menghapus semester ini maka kamu akan menghapus data <strong>Mata Kuliah</strong> dan <strong>Nilai IP Mahasiswa</strong> yang telah diinput yang terhubung.</p>
+                              </div>
+                              <div class="form-group">
                                  <label>Nama Semester</label>
                                  <input class="form-control" value="<?= $semesterItem->namaSemester ?>" disabled>
                               </div>
                               <div class="form-group">
-                                 <label>Jumlah Mata Kuliah</label>
+                                 <label>Qty Mata Kuliah</label>
                                  <input class="form-control" value="<?= $this->db->get_where('matkul', ['semesterMatkul' => $semesterItem->idSemester])->num_rows(); ?>" disabled>
+                              </div>
+                              <div class="form-group">
+                                 <label>Qty IP Mahasiswa</label>
+                                 <input class="form-control" value="<?= $this->db->join('matkul', 'matkul.IdMatkul = ip.matkulIp', 'left')->join('semester', 'semester.idSemester = matkul.semesterMatkul', 'left')->get_where('ip', ['idSemester' => $semesterItem->idSemester])->num_rows(); ?>" disabled>
                               </div>
                               <div class=" form-group">
                                  <div class="custom-control custom-checkbox small">

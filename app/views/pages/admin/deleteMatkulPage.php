@@ -27,12 +27,15 @@
                            <div class="card-body">
                               <?= form_open(current_url() . '?action=delete&id=' . $matkulItem->idMatkul); ?>
                               <div class="form-group">
+                                 <p class="text-danger">Dengan menghapus semester ini maka kamu akan menghapus data <strong>Nilai IP Mahasiswa</strong> yang telah diinput yang terhubung.</p>
+                              </div>
+                              <div class="form-group">
                                  <label>Nama Matkul</label>
                                  <input class="form-control" value="<?= $matkulItem->namaMatkul ?>" disabled>
                               </div>
                               <div class="form-group">
-                                 <label>Jumlah Nilai Inputan</label>
-                                 <input class="form-control" value="0" disabled>
+                                 <label>Qty Data IP Mahasiswa</label>
+                                 <input class="form-control" value="<?= $this->db->get_where('ip', ['matkulIp' => $matkulItem->idMatkul])->num_rows(); ?>" disabled>
                               </div>
                               <div class=" form-group">
                                  <div class="custom-control custom-checkbox small">

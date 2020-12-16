@@ -19,7 +19,7 @@
       <li class="nav-item <?= ($this->uri->segment(1) == 'data') ? 'active' : ''; ?>">
          <a class="nav-link" href="<?= site_url(); ?>data">
             <i class="fas fa-fw fa-edit"></i>
-            <span>Data Nilai</span></a>
+            <span>Data IP</span></a>
       </li>
       <li class="nav-item <?= ($this->uri->segment(1) == 'peringkat') ? 'active' : ''; ?>">
          <a class="nav-link" href="<?= site_url(); ?>peringkat">

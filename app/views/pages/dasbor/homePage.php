@@ -34,18 +34,71 @@
                   </div>
                   <!-- Content Row -->
                   <div class="row">
+                     <?php
+                     $arraySemester = 0;
+                     $arrayIP = 0;
+                     $arrayMatkul = 0;
 
+                     foreach ($semesterList as $semesterItem) {
+                        $sksTotal = 0;
+                        $ipAgregat = 0;
+
+                        $jumlahMatkul = 0;
+                        $terisiMatkul = 0;
+
+                        foreach ($matkulList as $matkulItem) {
+                           if ($matkulItem->semesterMatkul == $semesterItem->idSemester) {
+                              $sksTotal = $sksTotal + $matkulItem->sksMatkul;
+                              $ipAgregat = $ipAgregat + $matkulItem->sksMatkul * $matkulItem->angkaPredikat;
+                              if (!empty($matkulItem->predikatIp)) {
+                                 $terisiMatkul++;
+                              }
+                              $jumlahMatkul++;
+                              $arrayMatkul++;
+                           }
+                        }
+
+                        if ($jumlahMatkul > 0) {
+                           $arrayIP = $arrayIP + $ipAgregat / $sksTotal;
+                        }
+                        $arraySemester++;
+                     }
+
+                     $IPK = $arrayIP / $arraySemester;
+                     ?>
                      <!-- Content Column -->
                      <div class="col-lg-6 mb-4">
-                        <div class="card shadow mb-4">
-                           <!-- Card Header - Dropdown -->
-                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold text-primary">Grafik IP</h6>
+                        <div class="row">
+                           <div class="col-lg-6 mb-4">
+                              <div class="card bg-success text-white shadow">
+                                 <div class="card-body">
+                                    IP Kumulatif
+                                    <div class="font-weight-bold"><?= number_format((float)$IPK, 2); ?></div>
+                                 </div>
+                              </div>
                            </div>
-                           <!-- Card Body -->
-                           <div class="card-body">
-                              <div class="chart-area">
-                                 <canvas id="IPChart"></canvas>
+                           <div class="col-lg-6 mb-4">
+                              <div class="card bg-primary text-white shadow">
+                                 <div class="card-body">
+                                    Jumlah Mata Kuliah
+                                    <div class="font-weight-bold"><?= $arrayMatkul; ?></div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col">
+                              <div class="card shadow mb-4">
+                                 <!-- Card Header - Dropdown -->
+                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Grafik IP</h6>
+                                 </div>
+                                 <!-- Card Body -->
+                                 <div class="card-body">
+                                    <div class="chart-area">
+                                       <canvas id="IPChart"></canvas>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -54,7 +107,7 @@
                      <div class="col-lg-6 mb-4">
                         <div class="card shadow mb-4">
                            <div class="card-header py-3">
-                              <h6 class="m-0 font-weight-bold text-primary">Input Data Nilai</h6>
+                              <h6 class="m-0 font-weight-bold text-primary">Kelengkapan Data IP</h6>
                            </div>
                            <div class="card-body">
                               <?php

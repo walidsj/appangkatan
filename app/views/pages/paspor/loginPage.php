@@ -48,7 +48,7 @@
             </div>
 
             <div class="text-center">
-               <img src="<?= base_url(); ?>public/assets/img/seal.png">
+               <img src="<?= base_url(); ?>public/assets/img/seal.png" class="img" width="72">
             </div>
          </div>
 

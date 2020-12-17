@@ -71,7 +71,7 @@
             </div>
 
             <div class="text-center pb-5">
-               <img src="<?= base_url(); ?>public/assets/img/seal.png">
+               <img src="<?= base_url(); ?>public/assets/img/seal.png" class="img" width="72">
             </div>
 
          </div>

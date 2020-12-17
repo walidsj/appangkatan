@@ -18,13 +18,13 @@
                   <?php $this->load->view('components/breadcrumbComponent'); ?>
                   <div class="row">
                      <div class="col-lg-8 mb-4">
-                        <?php if (!empty($pendukungList)) : ?>
-                           <div class="card shadow mb-4">
-                              <div class="card-header">
-                                 <h6 class="m-0 font-weight-bold text-primary">Data Parameter Lain-Lain</h6>
-                              </div>
+                        <div class="card shadow mb-4">
+                           <div class="card-header">
+                              <h6 class="m-0 font-weight-bold text-primary">Data Parameter Lain-Lain</h6>
+                           </div>
+                           <?php if (!empty($pendukungList)) : ?>
+                              <?= form_open(current_url()); ?>
                               <div class="card-body">
-                                 <?= form_open(current_url()); ?>
                                  <div class="table-responsive">
                                     <table class="table table-bordered table-striped" cellspacing="0">
                                        <thead>
@@ -64,15 +64,15 @@
                                  </div>
                               </div>
                               <?= form_close(); ?>
-                           </div>
-                        <?php else : ?>
-                           <div class="form-group text-center mt-3 mb-4">
-                              <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
-                           </div>
-                           <div class="form-group text-center">
-                              <h5>Data Not Found</h5>
-                           </div>
-                        <?php endif; ?>
+                           <?php else : ?>
+                              <div class="form-group text-center mt-3 mb-4">
+                                 <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
+                              </div>
+                              <div class="form-group text-center">
+                                 <h5>Data Not Found</h5>
+                              </div>
+                           <?php endif; ?>
+                        </div>
                      </div>
                   </div>
                </div>

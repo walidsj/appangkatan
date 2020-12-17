@@ -18,52 +18,61 @@
                   <?php $this->load->view('components/breadcrumbComponent'); ?>
                   <div class="row">
                      <div class="col-lg-8 mb-4">
-                        <div class="card shadow mb-4">
-                           <div class="card-header">
-                              <h6 class="m-0 font-weight-bold text-primary">Data Parameter Lain-Lain</h6>
-                           </div>
-                           <div class="card-body">
-                              <?= form_open(current_url()); ?>
-                              <div class="table-responsive">
-                                 <table class="table table-bordered table-striped" cellspacing="0">
-                                    <thead>
-                                       <tr>
-                                          <th width="1%">No.</th>
-                                          <th>Nama Parameter</th>
-                                          <th>Nilai</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <?php $noPendukung = 1; ?>
-                                       <?php foreach ($pendukungList as $pendukungItem) : ?>
+                        <?php if (!empty($pendukungList)) : ?>
+                           <div class="card shadow mb-4">
+                              <div class="card-header">
+                                 <h6 class="m-0 font-weight-bold text-primary">Data Parameter Lain-Lain</h6>
+                              </div>
+                              <div class="card-body">
+                                 <?= form_open(current_url()); ?>
+                                 <div class="table-responsive">
+                                    <table class="table table-bordered table-striped" cellspacing="0">
+                                       <thead>
                                           <tr>
-                                             <td><?= $noPendukung; ?></td>
-                                             <td><?= $pendukungItem->namaPendukung; ?></td>
-                                             <td>
-                                                <input name="<?= $pendukungItem->idPendukung; ?>" type="text" class="form-control" placeholder="<?= $pendukungItem->namaPendukung; ?>" value="<?= (!empty(set_value($pendukungItem->idPendukung))) ? set_value($pendukungItem->idPendukung) : (!empty($pendukungItem->nilaiParameter) ? $pendukungItem->nilaiParameter : ''); ?>">
-                                                <?= form_error($pendukungItem->idPendukung); ?>
-                                             </td>
+                                             <th width="1%">No.</th>
+                                             <th>Nama Parameter</th>
+                                             <th>Nilai</th>
                                           </tr>
-                                          <?php $noPendukung++; ?>
-                                       <?php endforeach; ?>
-                                    </tbody>
-                                 </table>
-                              </div>
-                           </div>
-                           <div class="card-footer">
-                              <div class="form-group mt-2">
-                                 <div class="custom-control custom-checkbox small">
-                                    <input name="check" type="checkbox" class="custom-control-input" id="check">
-                                    <label class="custom-control-label" for="check">Saya sedang mengubah data dan yakin data yang saya isikan sudah benar.</label>
+                                       </thead>
+                                       <tbody>
+                                          <?php $noPendukung = 1; ?>
+                                          <?php foreach ($pendukungList as $pendukungItem) : ?>
+                                             <tr>
+                                                <td><?= $noPendukung; ?></td>
+                                                <td><?= $pendukungItem->namaPendukung; ?></td>
+                                                <td>
+                                                   <input name="<?= $pendukungItem->idPendukung; ?>" type="text" class="form-control" placeholder="<?= $pendukungItem->namaPendukung; ?>" value="<?= (!empty(set_value($pendukungItem->idPendukung))) ? set_value($pendukungItem->idPendukung) : (!empty($pendukungItem->nilaiParameter) ? $pendukungItem->nilaiParameter : ''); ?>">
+                                                   <?= form_error($pendukungItem->idPendukung); ?>
+                                                </td>
+                                             </tr>
+                                             <?php $noPendukung++; ?>
+                                          <?php endforeach; ?>
+                                       </tbody>
+                                    </table>
                                  </div>
-                                 <?= form_error('check'); ?>
                               </div>
-                              <div class="form-group mb-3">
-                                 <button type="submit" name="semester" class="btn btn-primary">Submit Data</button>
+                              <div class="card-footer">
+                                 <div class="form-group mt-2">
+                                    <div class="custom-control custom-checkbox small">
+                                       <input name="check" type="checkbox" class="custom-control-input" id="check">
+                                       <label class="custom-control-label" for="check">Saya sedang mengubah data dan yakin data yang saya isikan sudah benar.</label>
+                                    </div>
+                                    <?= form_error('check'); ?>
+                                 </div>
+                                 <div class="form-group mb-3">
+                                    <button type="submit" name="semester" class="btn btn-primary">Submit Data</button>
+                                 </div>
                               </div>
+                              <?= form_close(); ?>
                            </div>
-                           <?= form_close(); ?>
-                        </div>
+                        <?php else : ?>
+                           <div class="form-group text-center mt-3 mb-4">
+                              <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
+                           </div>
+                           <div class="form-group text-center">
+                              <h5>Data Not Found</h5>
+                           </div>
+                        <?php endif; ?>
                      </div>
                   </div>
                </div>

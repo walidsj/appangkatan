@@ -19,7 +19,12 @@
       <li class="nav-item <?= ($this->uri->segment(1) == 'data') ? 'active' : ''; ?>">
          <a class="nav-link" href="<?= site_url(); ?>data">
             <i class="fas fa-fw fa-edit"></i>
-            <span>Data IP</span></a>
+            <span>Data Nilai IP</span></a>
+      </li>
+      <li class="nav-item <?= ($this->uri->segment(1) == 'data-pendukung') ? 'active' : ''; ?>">
+         <a class="nav-link" href="<?= site_url(); ?>data-pendukung">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Data Pendukung</span></a>
       </li>
       <li class="nav-item <?= ($this->uri->segment(1) == 'peringkat') ? 'active' : ''; ?>">
          <a class="nav-link" href="<?= site_url(); ?>peringkat">

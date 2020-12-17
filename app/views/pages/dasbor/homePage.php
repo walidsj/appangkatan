@@ -134,7 +134,7 @@
                                  }
                                  ?>
                                  <?php if ($jumlahMatkul > 0) : ?>
-                                    <h4 class="small font-weight-bold"><?= $semesterItem->namaSemester; ?> <span class="float-right"><?= ((float)($terisiMatkul / $jumlahMatkul) < 1) ? round((float)($terisiMatkul / $jumlahMatkul) * 100) . '%' : 'Complete'; ?></span></h4>
+                                    <h4 class="small font-weight-bold"><?= $semesterItem->namaSemester; ?> <span class="float-right"><?= round((float)($terisiMatkul / $jumlahMatkul) * 100) . '%'; ?></span></h4>
                                     <div class="progress mb-4">
                                        <div class="progress-bar" role="progressbar" style="width: <?= round((float)($terisiMatkul / $jumlahMatkul) * 100) . '%'; ?>" aria-valuenow="<?= round((float)($terisiMatkul / $jumlahMatkul) * 100); ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>

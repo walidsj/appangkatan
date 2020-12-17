@@ -23,7 +23,7 @@
                               <ul class="nav nav-tabs" role="tablist">
                                  <?php foreach ($semesterList as $semesterItem) : ?>
                                     <li class="nav-item">
-                                       <a href="<?= site_url(); ?>data?semester=<?= $semesterItem->idSemester; ?>" class="nav-link <?= ($this->input->get('semester', true) == $semesterItem->idSemester) ? 'active' : ''; ?>" role="tab"><?= $semesterItem->namaSemester; ?></a>
+                                       <a href="<?= site_url(); ?>data?semester=<?= $semesterItem->idSemester; ?>" class="nav-link <?= ($this->input->get('semester', true) == $semesterItem->idSemester || (!empty($selectedSemester) && $selectedSemester == $semesterItem->idSemester)) ? 'active' : ''; ?>" role="tab"><?= $semesterItem->namaSemester; ?></a>
                                     </li>
                                  <?php endforeach; ?>
                               </ul>
@@ -57,7 +57,7 @@
                                              <td><?= number_format($ipAgregat / $sksTotal, 2); ?></td>
                                           </tr>
                                        </table>
-                                       <h4 class="small font-weight-bold">Progres Pengisian <span class="float-right"><?= ((float)($terisiMatkul / $jumlahMatkul) < 1) ? round((float)($terisiMatkul / $jumlahMatkul) * 100) . '%' : 'Complete'; ?></span></h4>
+                                       <h4 class="small font-weight-bold">Progres Pengisian <span class="float-right"><?= round((float)($terisiMatkul / $jumlahMatkul) * 100) . '%'; ?></span></h4>
                                        <div class="progress mb-4">
                                           <div class="progress-bar" role="progressbar" style="width: <?= round((float)($terisiMatkul / $jumlahMatkul) * 100) . '%'; ?>" aria-valuenow="<?= round((float)($terisiMatkul / $jumlahMatkul) * 100); ?>" aria-valuemin="0" aria-valuemax="100"></div>
                                        </div>
@@ -95,43 +95,50 @@
                                              </tbody>
                                           </table>
                                        </div>
-                                       <div class=" form-group">
-                                          <div class="custom-control custom-checkbox small">
-                                             <input name="check" type="checkbox" class="custom-control-input" id="check">
-                                             <label class="custom-control-label" for="check">Data yang diisikan sudah benar.</label>
-                                          </div>
-                                          <?= form_error('check'); ?>
-                                       </div>
-                                       <button type="submit" name="semester" value="<?= $semesterItem->idSemester; ?>" class="btn btn-primary">Simpan Data</button>
-                                       <?= form_close(); ?>
-                                    <?php else : ?>
-                                       <div class="form-group text-center mt-3 mb-4">
-                                          <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
-                                       </div>
-                                       <div class="form-group text-center">
-                                          <h4 class="mb-0">Pilih Semester</h4>
-                                          <h5>Data Not Found</h5>
-                                       </div>
-                                    <?php endif; ?>
                                  </div>
                               </div>
                            </div>
+                           <div class="card-footer">
+                              <div class="form-group mt-2">
+                                 <div class="custom-control custom-checkbox small">
+                                    <input name="check" type="checkbox" class="custom-control-input" id="check">
+                                    <label class="custom-control-label" for="check">Saya sedang mengubah data dan yakin data yang saya isikan sudah benar.</label>
+                                 </div>
+                                 <?= form_error('check'); ?>
+                              </div>
+                              <div class="form-group mb-3">
+                                 <button type="submit" name="semester" value="<?= $semesterItem->idSemester; ?>" class="btn btn-primary">Submit Data</button>
+                              </div>
+                           </div>
+                           <?= form_close(); ?>
+                        <?php else : ?>
+                           <div class="form-group text-center mt-3 mb-4">
+                              <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
+                           </div>
+                           <div class="form-group text-center">
+                              <h4 class="mb-0">Pilih Semester</h4>
+                              <h5>Data Not Found</h5>
+                           </div>
+                        <?php endif; ?>
                         </div>
                      </div>
                   </div>
-
                </div>
-               <!-- /.container-fluid -->
-
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <?php $this->load->view('components/footerComponent'); ?>
-            <!-- End of Footer -->
-
          </div>
-         <!-- End of Content Wrapper -->
+
+      </div>
+      <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <?php $this->load->view('components/footerComponent'); ?>
+      <!-- End of Footer -->
+
+      </div>
+      <!-- End of Content Wrapper -->
 
       </div>
 

@@ -90,7 +90,6 @@
                   </div>
 
                   <div class="row">
-
                      <div class="col-lg-6 mb-4">
                         <div class="card shadow mb-4">
                            <!-- Card Header - Dropdown -->
@@ -99,7 +98,7 @@
                            </div>
                            <!-- Card Body -->
                            <div class="card-body">
-                              <a href="<?= site_url(); ?>admin/matkul?action=tambah" class="btn btn-primary mb-3">Tambah</a>
+                              <a href="<?= site_url(); ?>admin/matkul?action=tambah" class="btn btn-primary mb-3">Tambah Matkul</a>
                               <div class="table-responsive">
                                  <table class="datatable table table-bordered table-striped" cellspacing="0">
                                     <thead>
@@ -136,38 +135,81 @@
                      </div>
                      <!-- Content Column -->
                      <div class="col-lg-6 mb-4">
-                        <div class="card shadow mb-4">
-                           <!-- Card Header - Dropdown -->
-                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                              <h6 class="m-0 font-weight-bold text-primary">Daftar Semester</h6>
+                        <div class="row">
+                           <div class="col-12">
+                              <div class="card shadow mb-4">
+                                 <!-- Card Header - Dropdown -->
+                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Daftar Semester</h6>
+                                 </div>
+                                 <!-- Card Body -->
+                                 <div class="card-body">
+                                    <a href="<?= site_url(); ?>admin/semester?action=tambah" class="btn btn-primary mb-3">Tambah Semester</a>
+                                    <div class="table-responsive">
+                                       <table class="datatable table table-bordered table-striped" cellspacing="0">
+                                          <thead>
+                                             <tr>
+                                                <th>Nama Semester</th>
+                                                <th>Aksi</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <?php foreach ($semesterList as $semesterItem) : ?>
+                                                <tr>
+                                                   <td><?= ($semesterItem->statusSemester == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $semesterItem->namaSemester; ?></td>
+                                                   <td>
+                                                      <a href="<?= site_url(); ?>admin/semester?action=edit&id=<?= $semesterItem->idSemester; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="<?= site_url(); ?>admin/semester?action=delete&id=<?= $semesterItem->idSemester; ?>" class="btn btn-danger btn-circle btn-sm">
+                                                         <i class="fas fa-trash"></i>
+                                                      </a>
+                                                   </td>
+                                                </tr>
+                                             <?php endforeach; ?>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
                            </div>
-                           <!-- Card Body -->
-                           <div class="card-body">
-                              <a href="<?= site_url(); ?>admin/semester?action=tambah" class="btn btn-primary mb-3">Tambah</a>
-                              <div class="table-responsive">
-                                 <table class="datatable table table-bordered table-striped" cellspacing="0">
-                                    <thead>
-                                       <tr>
-                                          <th>Nama Semester</th>
-                                          <th>Aksi</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <?php foreach ($semesterList as $semesterItem) : ?>
-                                          <tr>
-                                             <td><?= ($semesterItem->statusSemester == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $semesterItem->namaSemester; ?></td>
-                                             <td>
-                                                <a href="<?= site_url(); ?>admin/semester?action=edit&id=<?= $semesterItem->idSemester; ?>" class="btn btn-warning btn-circle btn-sm">
-                                                   <i class="fas fa-edit"></i>
-                                                </a>
-                                                <a href="<?= site_url(); ?>admin/semester?action=delete&id=<?= $semesterItem->idSemester; ?>" class="btn btn-danger btn-circle btn-sm">
-                                                   <i class="fas fa-trash"></i>
-                                                </a>
-                                             </td>
-                                          </tr>
-                                       <?php endforeach; ?>
-                                    </tbody>
-                                 </table>
+                           <div class="col-12">
+                              <div class="card shadow mb-4">
+                                 <!-- Card Header - Dropdown -->
+                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Parameter Data Pendukung</h6>
+                                 </div>
+                                 <!-- Card Body -->
+                                 <div class="card-body">
+                                    <a href="<?= site_url(); ?>admin/pendukung?action=tambah" class="btn btn-primary mb-3">Tambah Parameter Pendukung</a>
+                                    <div class="table-responsive">
+                                       <table class="datatable table table-bordered table-striped" cellspacing="0">
+                                          <thead>
+                                             <tr>
+                                                <th>Judul Parameter Pendukung</th>
+                                                <th>Jenis Data</th>
+                                                <th>Aksi</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <?php foreach ($pendukungList as $pendukungItem) : ?>
+                                                <tr>
+                                                   <td><?= ($pendukungItem->statusPendukung == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $pendukungItem->namaPendukung; ?></td>
+                                                   <td><?= ($pendukungItem->validasiPendukung == '') ? 'bebas' : $pendukungItem->validasiPendukung; ?></td>
+                                                   <td>
+                                                      <a href="<?= site_url(); ?>admin/pendukung?action=edit&id=<?= $pendukungItem->idPendukung; ?>" class="btn btn-warning btn-circle btn-sm">
+                                                         <i class="fas fa-edit"></i>
+                                                      </a>
+                                                      <a href="<?= site_url(); ?>admin/pendukung?action=delete&id=<?= $pendukungItem->idPendukung; ?>" class="btn btn-danger btn-circle btn-sm">
+                                                         <i class="fas fa-trash"></i>
+                                                      </a>
+                                                   </td>
+                                                </tr>
+                                             <?php endforeach; ?>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
                               </div>
                            </div>
                         </div>

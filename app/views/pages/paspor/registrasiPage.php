@@ -14,7 +14,7 @@
 
          <div class="col-md-6 col-lg-4">
 
-            <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card o-hidden border-0 shadow-lg mt-5 mb-4">
                <div class="card-body p-0">
                   <!-- Nested Row within Card Body -->
                   <div class="row">
@@ -68,6 +68,10 @@
                      </div>
                   </div>
                </div>
+            </div>
+
+            <div class="text-center pb-5">
+               <img src="<?= base_url(); ?>public/assets/img/seal.png">
             </div>
 
          </div>

@@ -19,12 +19,23 @@
                   <div class="row">
                      <div class="col-lg-8 mb-4">
                         <div class="card shadow mb-4">
-                           <div class="card-header">
-                              <h6 class="m-0 font-weight-bold text-primary">Data Parameter Lain-Lain</h6>
-                           </div>
                            <?php if (!empty($pendukungList)) : ?>
+                              <?php
+                              $terisiParameter = 0;
+                              $jumlahParameter = count($pendukungList);
+
+                              foreach ($pendukungList as $pendukungItem) {
+                                 if (!empty($pendukungItem->idParameter)) {
+                                    $terisiParameter++;
+                                 }
+                              }
+                              ?>
                               <?= form_open(current_url()); ?>
                               <div class="card-body">
+                                 <h4 class="small font-weight-bold">Progres Pengisian <span class="float-right"><?= round((float)($terisiParameter / $jumlahParameter) * 100) . '%'; ?></span></h4>
+                                 <div class="progress mb-4">
+                                    <div class="progress-bar" role="progressbar" style="width: <?= round((float)($terisiParameter / $jumlahParameter) * 100) . '%'; ?>" aria-valuenow="<?= round((float)($terisiParameter / $jumlahParameter) * 100); ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                 </div>
                                  <div class="table-responsive">
                                     <table class="table table-bordered table-striped" cellspacing="0">
                                        <thead>
@@ -77,23 +88,9 @@
                   </div>
                </div>
             </div>
+            <?php $this->load->view('components/footerComponent'); ?>
          </div>
-
       </div>
-      <!-- /.container-fluid -->
-
-      </div>
-      <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <?php $this->load->view('components/footerComponent'); ?>
-      <!-- End of Footer -->
-
-      </div>
-      <!-- End of Content Wrapper -->
-
-      </div>
-
 
       <?php $this->load->view('layouts/scriptLayout'); ?>
    </body>

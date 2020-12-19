@@ -57,13 +57,13 @@
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat?page=parameter" class="nav-link" role="tab">Rank Nilai Parameter</a>
+                                    <a href="<?= site_url(); ?>peringkat?page=parameter" class="nav-link" role="tab">Rank Parameter</a>
                                  </li>
                                  <!-- <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai IP + Parameter</a>
                                  </li> -->
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat" class="nav-link active" role="tab">Rank Nilai IP</a>
+                                    <a href="<?= site_url(); ?>peringkat" class="nav-link active" role="tab">Rank IPK</a>
                                  </li>
                               </ul>
                            </div>

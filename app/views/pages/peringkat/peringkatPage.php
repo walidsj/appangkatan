@@ -18,7 +18,7 @@
                   <?php $this->load->view('components/breadcrumbComponent'); ?>
                   <div class="row">
                      <!-- Content Column -->
-                     <div class="col-md-3 mb-4">
+                     <div class="col-md-3">
                         <div class="card shadow mb-4">
                            <!-- Card Body -->
                            <div class="card-body">
@@ -33,7 +33,7 @@
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6 mb-4">
+                     <div class="col-md-6">
                         <div class="card shadow mb-4">
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">

@@ -72,10 +72,10 @@
                                  <table class="datatable table table-bordered table-striped" cellspacing="0">
                                     <thead>
                                        <tr>
-                                          <th>Rank</th>
+                                          <th width="1%">Rank</th>
                                           <th>Nama</th>
                                           <th>SKS</th>
-                                          <th>IPK</th>
+                                          <th width="1%">IPK</th>
                                        </tr>
                                     </thead>
                                     <tbody>

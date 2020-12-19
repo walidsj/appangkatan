@@ -88,9 +88,9 @@
                                     <table class="datatable table table-bordered table-striped" cellspacing="0">
                                        <thead>
                                           <tr>
-                                             <th>Rank</th>
+                                             <th width="1%">Rank</th>
                                              <th>Nama</th>
-                                             <th>Nilai</th>
+                                             <th width="1%">Nilai</th>
                                           </tr>
                                        </thead>
                                        <tbody>

@@ -21,7 +21,7 @@ class Peringkat extends CI_Controller
 	}
 	public function index()
 	{
-		$data['title'] = 'Peringkat Nilai (' . $this->userSession->namaProdi . ')';
+		$data['title'] = 'Peringkat Nilai';
 		$data['userSession'] = $this->userSession;
 
 		$pagination = $this->input->get('page', true);

@@ -58,7 +58,7 @@
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link active" role="tab">Nilai Parameter</a>
+                                    <a href="<?= site_url(); ?>peringkat?page=parameter" class="nav-link active" role="tab">Nilai Parameter</a>
                                  </li>
                                  <!-- <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai IP + Parameter</a>
@@ -72,12 +72,12 @@
                               <div class="form-group mb-4">
                                  <label class="font-weight-bold">Kategori Parameter</label>
                                  <form class="form-inline">
-                                    <input name="by" value="parameter" hidden>
+                                    <input name="page" value="parameter" hidden>
                                     <div class="form-group">
-                                       <select name="parameter" class="form-control">
+                                       <select name="id" class="form-control">
                                           <option value="0" selected>Pilih Parameter</option>
                                           <?php foreach ($pendukungList as $pendukungItem) : ?>
-                                             <option value="<?= $pendukungItem->idPendukung; ?>" <?= ($this->input->get('parameter', true) == $pendukungItem->idPendukung) ? 'selected' : null; ?>><?= $pendukungItem->namaPendukung; ?></option> <?php endforeach; ?>
+                                             <option value="<?= $pendukungItem->idPendukung; ?>" <?= ($this->input->get('id', true) == $pendukungItem->idPendukung) ? 'selected' : null; ?>><?= $pendukungItem->namaPendukung; ?></option> <?php endforeach; ?>
                                        </select>
                                        <button type="submit" class="mx-2 my-2 btn btn-primary">Pilih</button>
                                     </div>

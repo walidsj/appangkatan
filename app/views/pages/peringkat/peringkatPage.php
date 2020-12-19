@@ -57,7 +57,7 @@
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai Parameter</a>
+                                    <a href="<?= site_url(); ?>peringkat?page=parameter" class="nav-link" role="tab">Nilai Parameter</a>
                                  </li>
                                  <!-- <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai IP + Parameter</a>

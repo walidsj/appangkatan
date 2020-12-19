@@ -24,7 +24,7 @@ class Peringkat extends CI_Controller
 		$data['title'] = 'Peringkat Nilai (' . $this->userSession->namaProdi . ')';
 		$data['userSession'] = $this->userSession;
 
-		$pagination = $this->input->get('by', true);
+		$pagination = $this->input->get('page', true);
 
 		if ($pagination == '') {
 			$data['userList'] = $this->db
@@ -43,7 +43,7 @@ class Peringkat extends CI_Controller
 			$this->load->view('pages/peringkat/peringkatPage', $data);
 		} elseif ($pagination = 'parameter') {
 
-			$idPendukung = $this->input->get('parameter', true);
+			$idPendukung = $this->input->get('id', true);
 
 			$data['pendukungList'] = $this->db->where('prodiPendukung', $this->userSession->prodiUser)->order_by('namaPendukung', 'ASC')->order_by('namaPendukung', 'ASC')->get('pendukung')->result();
 

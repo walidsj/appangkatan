@@ -47,17 +47,20 @@ class Peringkat extends CI_Controller
 
 			$data['pendukungList'] = $this->db->where('prodiPendukung', $this->userSession->prodiUser)->order_by('namaPendukung', 'ASC')->order_by('namaPendukung', 'ASC')->get('pendukung')->result();
 
+			if ($idPendukung) {
 
-			$data['userList'] = $this->db
-				->select('idUser, npmUser, samaranUser, parameter.nilaiParameter')
-				->where('prodiUser', $this->userSession->prodiUser)
-				->join('parameter', 'parameter.userParameter = user.idUser', 'left')
-				->where('parameter.pendukungParameter', $idPendukung)
-				->group_by('user.idUser')
-				->order_by('nilaiParameter', 'DESC')
-				->get('user')
-				->result_array();
-
+				$data['userList'] = $this->db
+					->select('idUser, npmUser, samaranUser, parameter.nilaiParameter')
+					->where('prodiUser', $this->userSession->prodiUser)
+					->join('parameter', 'parameter.userParameter = user.idUser', 'left')
+					->where('parameter.pendukungParameter', $idPendukung)
+					->group_by('user.idUser')
+					->order_by('nilaiParameter', 'DESC')
+					->get('user')
+					->result_array();
+			} else {
+				$data['userList'] = null;
+			}
 			$this->load->view('pages/peringkat/peringkatParameterPage', $data);
 		}
 	}

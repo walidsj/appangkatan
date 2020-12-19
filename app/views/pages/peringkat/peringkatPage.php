@@ -31,12 +31,6 @@
                                  <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . 'XX'; ?></span>
                                  <span class="d-block"><?= $userSession->namaProdi; ?></span>
                               </div>
-                              <table class="table table-striped">
-                                 <tr>
-                                    <th>Peringkat</th>
-                                    <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
-                                 </tr>
-                              </table>
                               <?php
                               function peringkatSaya($userList, $searchId)
                               {
@@ -49,6 +43,12 @@
                                  return -1;
                               }
                               ?>
+                              <table class="table table-striped">
+                                 <tr>
+                                    <th>Peringkat</th>
+                                    <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
+                                 </tr>
+                              </table>
                            </div>
                         </div>
                      </div>

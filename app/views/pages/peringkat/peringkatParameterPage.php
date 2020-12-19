@@ -30,6 +30,26 @@
                                  <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . 'XX'; ?></span>
                                  <span class="d-block"><?= $userSession->namaProdi; ?></span>
                               </div>
+                              <?php if ($userList) : ?>
+                                 <?php
+                                 function peringkatSaya($userList, $searchId)
+                                 {
+
+                                    $userListLen = count($userList);
+                                    for ($i = 0; $i < $userListLen; $i++) {
+                                       if ($userList[$i]['idUser'] == $searchId) return $i + 1;
+                                    }
+
+                                    return -1;
+                                 }
+                                 ?>
+                                 <table class="table table-striped">
+                                    <tr>
+                                       <th>Peringkat</th>
+                                       <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
+                                    </tr>
+                                 </table>
+                              <?php endif; ?>
                            </div>
                         </div>
                      </div>

@@ -5,7 +5,7 @@ class Paspor extends CI_Controller
 {
 	public function index()
 	{
-		if (!empty($this->session->userSession)) {
+		if ($this->session->userSession) {
 			redirect('dasbor');
 		}
 
@@ -44,7 +44,7 @@ class Paspor extends CI_Controller
 
 	public function registrasi()
 	{
-		if (!empty($this->session->userSession)) {
+		if ($this->session->userSession) {
 			redirect('dasbor');
 		}
 
@@ -82,8 +82,10 @@ class Paspor extends CI_Controller
 
 	public function logout()
 	{
-		$this->session->unset_userdata('userSession');
-		$this->session->set_flashdata('alert', 'success|Logout Berhasil|');
+		if ($this->session->userSession) {
+			$this->session->unset_userdata('userSession');
+			$this->session->set_flashdata('alert', 'success|Logout Berhasil|');
+		}
 		redirect('paspor');
 	}
 }

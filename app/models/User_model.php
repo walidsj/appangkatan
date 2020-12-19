@@ -33,8 +33,8 @@ class User_model extends CI_Model
             [
                 'field' => 'samaran',
                 'label' => 'Nama Samaran',
-                'rules' => 'required|trim|min_length[4]|max_length[128]',
-                'errors' => []
+                'rules' => 'required|trim|min_length[4]|max_length[128]|is_unique[user.samaranUser]',
+                'errors' => ['is_unique' => 'Nama samaran telah dipakai, coba yang lain.']
             ],
             [
                 'field' => 'npm',

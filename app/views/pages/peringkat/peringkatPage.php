@@ -49,30 +49,32 @@
                               </ul>
                            </div>
                            <div class="card-body">
-                              <table class="datatable table table-bordered table-striped" cellspacing="0">
-                                 <thead>
-                                    <tr>
-                                       <th>Rank</th>
-                                       <th>Nama</th>
-                                       <th>SKS</th>
-                                       <th>IPK</th>
-                                    </tr>
-                                 </thead>
-                                 <tbody>
-                                    <?php $noUser = 1; ?>
-                                    <?php foreach ($userList as $userItem) : ?>
-                                       <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
-                                          <th><?= str_pad($noUser, 4, '0', STR_PAD_LEFT);; ?></th>
-                                          <td><?= $userItem['samaranUser']; ?></td>
-                                          <td><?= $userItem['totalSks']; ?> <small>(<?= round((float)($userItem['totalSks'] / $matkul['totalSks']) * 100); ?>%)</small></td>
-                                          <th>
-                                             <?= number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 4); ?>
-                                          </th>
+                              <div class="table-responsive">
+                                 <table class="datatable table table-bordered table-striped" cellspacing="0">
+                                    <thead>
+                                       <tr>
+                                          <th>Rank</th>
+                                          <th>Nama</th>
+                                          <th>SKS</th>
+                                          <th>IPK</th>
                                        </tr>
-                                       <?php $noUser++; ?>
-                                    <?php endforeach; ?>
-                                 </tbody>
-                              </table>
+                                    </thead>
+                                    <tbody>
+                                       <?php $noUser = 1; ?>
+                                       <?php foreach ($userList as $userItem) : ?>
+                                          <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
+                                             <th><?= str_pad($noUser, 4, '0', STR_PAD_LEFT);; ?></th>
+                                             <td><?= $userItem['samaranUser']; ?></td>
+                                             <td><?= $userItem['totalSks']; ?> <small>(<?= round((float)($userItem['totalSks'] / $matkul['totalSks']) * 100); ?>%)</small></td>
+                                             <th>
+                                                <?= number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 4); ?>
+                                             </th>
+                                          </tr>
+                                          <?php $noUser++; ?>
+                                       <?php endforeach; ?>
+                                    </tbody>
+                                 </table>
+                              </div>
                            </div>
                         </div>
                      </div>

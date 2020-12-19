@@ -64,26 +64,28 @@
                                  </form>
                               </div>
                               <?php if ($userList) : ?>
-                                 <table class="datatable table table-bordered table-striped" cellspacing="0">
-                                    <thead>
-                                       <tr>
-                                          <th>Rank</th>
-                                          <th>Nama</th>
-                                          <th>Nilai</th>
-                                       </tr>
-                                    </thead>
-                                    <tbody>
-                                       <?php $noUser = 1; ?>
-                                       <?php foreach ($userList as $userItem) : ?>
-                                          <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
-                                             <th><?= str_pad($noUser, 4, '0', STR_PAD_LEFT);; ?></th>
-                                             <td><?= $userItem['samaranUser']; ?></td>
-                                             <td><?= $userItem['nilaiParameter']; ?></td>
+                                 <div class="table-responsive">
+                                    <table class="datatable table table-bordered table-striped" cellspacing="0">
+                                       <thead>
+                                          <tr>
+                                             <th>Rank</th>
+                                             <th>Nama</th>
+                                             <th>Nilai</th>
                                           </tr>
-                                          <?php $noUser++; ?>
-                                       <?php endforeach; ?>
-                                    </tbody>
-                                 </table>
+                                       </thead>
+                                       <tbody>
+                                          <?php $noUser = 1; ?>
+                                          <?php foreach ($userList as $userItem) : ?>
+                                             <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
+                                                <th><?= str_pad($noUser, 4, '0', STR_PAD_LEFT);; ?></th>
+                                                <td><?= $userItem['samaranUser']; ?></td>
+                                                <td><?= $userItem['nilaiParameter']; ?></td>
+                                             </tr>
+                                             <?php $noUser++; ?>
+                                          <?php endforeach; ?>
+                                       </tbody>
+                                    </table>
+                                 </div>
                               <?php else : ?>
                                  <div class="form-group text-center mt-3 mb-4">
                                     <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">

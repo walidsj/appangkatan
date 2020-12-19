@@ -26,7 +26,12 @@
          allowClear: Boolean($(this).data('allow-clear')),
       });
    });
-   $('.datatable').DataTable();
+   $('.datatable').DataTable({
+      "columnDefs": [{
+         "type": "any-number",
+         targets: 1
+      }]
+   });
    $('.dataTables_filter input[type="search"]').css({
       'width': '100px',
       'display': 'inline-block'

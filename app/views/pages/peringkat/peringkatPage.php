@@ -82,7 +82,7 @@
                                        <?php $noUser = 1; ?>
                                        <?php foreach ($userList as $userItem) : ?>
                                           <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
-                                             <th><?= str_pad($noUser, 4, '0', STR_PAD_LEFT);; ?></th>
+                                             <th><?= $noUser; ?></th>
                                              <td><?= $userItem['samaranUser']; ?></td>
                                              <td><?= $userItem['totalSks']; ?> <small>(<?= round((float)($userItem['totalSks'] / $matkul['totalSks']) * 100); ?>%)</small></td>
                                              <th>

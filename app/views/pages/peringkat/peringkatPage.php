@@ -25,11 +25,29 @@
                               <div class="form-group text-center mt-3">
                                  <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/knight.png" width="64">
                               </div>
+                              <?php
+                              function peringkatSaya($userList, $searchId)
+                              {
+
+                                 $userListLen = count($userList);
+                                 for ($i = 0; $i < $userListLen; $i++) {
+                                    if ($userList[$i]['idUser'] == $searchId) return $i + 1;
+                                 }
+
+                                 return -1;
+                              }
+                              ?>
                               <div class="form-group text-center">
                                  <strong><span class="d-block"><?= $userSession->samaranUser; ?></span></strong>
                                  <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . 'XX'; ?></span>
                                  <span class="d-block"><?= $userSession->namaProdi; ?></span>
                               </div>
+                              <table class="table table-striped">
+                                 <tr>
+                                    <th>Peringkat</th>
+                                    <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari (<?= count($userList); ?>)</small></td>
+                                 </tr>
+                              </table>
                            </div>
                         </div>
                      </div>

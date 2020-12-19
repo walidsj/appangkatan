@@ -70,7 +70,6 @@
                            </div>
                            <div class="card-body">
                               <div class="form-group mb-4">
-                                 <label class="font-weight-bold">Kategori Parameter</label>
                                  <form class="form-inline">
                                     <input name="page" value="parameter" hidden>
                                     <div class="form-group">

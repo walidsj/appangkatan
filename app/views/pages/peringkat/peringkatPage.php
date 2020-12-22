@@ -57,7 +57,7 @@
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat?page=parameter" class="nav-link" role="tab">Rank Parameter</a>
+                                    <a href="<?= site_url(); ?>peringkat/parameter" class="nav-link" role="tab">Rank Parameter</a>
                                  </li>
                                  <!-- <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai IP + Parameter</a>
@@ -84,7 +84,7 @@
                                           <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
                                              <th><?= $noUser; ?></th>
                                              <td><?= $userItem['samaranUser']; ?></td>
-                                             <td><?= $userItem['totalSks']; ?></td>
+                                             <td><?= ($userItem['totalSks'] / $userItem['totalSks'] > 0) ? $userItem['totalSks'] : '0'; ?></td>
                                              <th>
                                                 <?= ($userItem['totalAgregatIp'] / $userItem['totalSks'] > 0) ? number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 2) : '0.00'; ?>
                                              </th>

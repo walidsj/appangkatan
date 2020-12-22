@@ -58,7 +58,7 @@
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat?page=parameter" class="nav-link active" role="tab">Rank Parameter</a>
+                                    <a href="<?= site_url(); ?>peringkat/parameter" class="nav-link active" role="tab">Rank Parameter</a>
                                  </li>
                                  <!-- <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai IP + Parameter</a>
@@ -71,7 +71,6 @@
                            <div class="card-body">
                               <div class="form-group mb-4">
                                  <form class="form-inline">
-                                    <input name="page" value="parameter" hidden>
                                     <div class="form-group">
                                        <select name="id" class="form-control">
                                           <option value="0" selected>Pilih Parameter</option>

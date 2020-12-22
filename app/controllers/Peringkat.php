@@ -21,47 +21,48 @@ class Peringkat extends CI_Controller
 	}
 	public function index()
 	{
-		$data['title'] = 'Peringkat Nilai';
+		$data['title'] = 'Peringkat Nilai IPK';
 		$data['userSession'] = $this->userSession;
 
-		$pagination = $this->input->get('page', true);
+		$data['userList'] = $this->db
+			->select('idUser, npmUser, samaranUser, SUM((predikat.angkaPredikat * matkul.sksMatkul)) as totalAgregatIp, SUM(matkul.sksMatkul) as totalSks')
+			->where('prodiUser', $this->userSession->prodiUser)
+			->join('ip', 'ip.userIp = user.idUser', 'left')
+			->join('predikat', 'predikat.idPredikat = ip.predikatIp', 'left')
+			->join('matkul', 'matkul.idMatkul = ip.matkulIp', 'left')
+			->group_by('user.idUser')
+			->order_by('totalAgregatIp', 'DESC')
+			->get('user')
+			->result_array();
 
-		if ($pagination == '') {
+		$data['matkul'] = $this->db->select('SUM(sksMatkul) as totalSks')->where('prodiMatkul', $this->userSession->prodiUser)->get('matkul')->row_array();
+
+		$this->load->view('pages/peringkat/peringkatPage', $data);
+	}
+
+	public function parameter()
+	{
+		$idPendukung = $this->input->get('id', true);
+
+		$data['title'] = 'Peringkat Nilai Parameter';
+		$data['userSession'] = $this->userSession;
+
+		$data['pendukungList'] = $this->db->where('prodiPendukung', $this->userSession->prodiUser)->order_by('namaPendukung', 'ASC')->order_by('namaPendukung', 'ASC')->get('pendukung')->result();
+
+		if ($idPendukung) {
+
 			$data['userList'] = $this->db
-				->select('idUser, npmUser, samaranUser, SUM((predikat.angkaPredikat * matkul.sksMatkul)) as totalAgregatIp, SUM(matkul.sksMatkul) as totalSks')
+				->select('idUser, npmUser, samaranUser, parameter.nilaiParameter')
 				->where('prodiUser', $this->userSession->prodiUser)
-				->join('ip', 'ip.userIp = user.idUser', 'left')
-				->join('predikat', 'predikat.idPredikat = ip.predikatIp', 'left')
-				->join('matkul', 'matkul.idMatkul = ip.matkulIp', 'left')
+				->join('parameter', 'parameter.userParameter = user.idUser', 'left')
+				->where('parameter.pendukungParameter', $idPendukung)
 				->group_by('user.idUser')
-				->order_by('totalAgregatIp', 'DESC')
+				->order_by('nilaiParameter', 'DESC')
 				->get('user')
 				->result_array();
-
-			$data['matkul'] = $this->db->select('SUM(sksMatkul) as totalSks')->where('prodiMatkul', $this->userSession->prodiUser)->get('matkul')->row_array();
-
-			$this->load->view('pages/peringkat/peringkatPage', $data);
-		} elseif ($pagination = 'parameter') {
-
-			$idPendukung = $this->input->get('id', true);
-
-			$data['pendukungList'] = $this->db->where('prodiPendukung', $this->userSession->prodiUser)->order_by('namaPendukung', 'ASC')->order_by('namaPendukung', 'ASC')->get('pendukung')->result();
-
-			if ($idPendukung) {
-
-				$data['userList'] = $this->db
-					->select('idUser, npmUser, samaranUser, parameter.nilaiParameter')
-					->where('prodiUser', $this->userSession->prodiUser)
-					->join('parameter', 'parameter.userParameter = user.idUser', 'left')
-					->where('parameter.pendukungParameter', $idPendukung)
-					->group_by('user.idUser')
-					->order_by('nilaiParameter', 'DESC')
-					->get('user')
-					->result_array();
-			} else {
-				$data['userList'] = null;
-			}
-			$this->load->view('pages/peringkat/peringkatParameterPage', $data);
+		} else {
+			$data['userList'] = null;
 		}
+		$this->load->view('pages/peringkat/peringkatParameterPage', $data);
 	}
 }

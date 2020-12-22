@@ -75,7 +75,7 @@
                                           <th width="1%">#</th>
                                           <th>Nama</th>
                                           <th>SKS</th>
-                                          <th width="1%">IPK</th>
+                                          <th>IPK</th>
                                        </tr>
                                     </thead>
                                     <tbody>
@@ -84,9 +84,9 @@
                                           <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
                                              <th><?= $noUser; ?></th>
                                              <td><?= $userItem['samaranUser']; ?></td>
-                                             <td><?= $userItem['totalSks']; ?> <small>(<?= round((float)($userItem['totalSks'] / $matkul['totalSks']) * 100); ?>%)</small></td>
+                                             <td><?= $userItem['totalSks']; ?></td>
                                              <th>
-                                                <?= ($userItem['totalAgregatIp'] / $userItem['totalSks'] > 0) ? number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 4) : '0.0000'; ?>
+                                                <?= ($userItem['totalAgregatIp'] / $userItem['totalSks'] > 0) ? number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 2) : '0.0000'; ?>
                                              </th>
                                           </tr>
                                           <?php $noUser++; ?>

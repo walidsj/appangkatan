@@ -26,15 +26,28 @@
          allowClear: Boolean($(this).data('allow-clear')),
       });
    });
+   var columnDefs = [{
+      type: "any-number",
+      targets: 1
+   }];
+   $('.datatable').find('th').each(function(i, el) {
+      var $el = $(el);
+      if ($el.is('[data-priority]')) {
+         var defs = {
+            responsivePriority: $el.data('priority'),
+            targets: i
+         };
+         columnDefs.push(defs);
+      }
+   });
+   console.log(columnDefs);
    $('.datatable').DataTable({
-      "columnDefs": [{
-         "type": "any-number",
-         targets: 1
-      }]
+      responsive: true,
+      columnDefs: columnDefs
    });
    $('.dataTables_filter input[type="search"]').css({
-      'width': '100px',
-      'display': 'inline-block'
+      width: '100px',
+      display: 'inline-block'
    });
    $('form').submit(function() {
       Swal.fire({

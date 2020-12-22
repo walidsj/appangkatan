@@ -89,7 +89,7 @@
                                           <tr>
                                              <th width="1%">#</th>
                                              <th>Nama</th>
-                                             <th width="1%">Nilai</th>
+                                             <th>Nilai</th>
                                           </tr>
                                        </thead>
                                        <tbody>

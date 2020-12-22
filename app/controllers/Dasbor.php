@@ -24,10 +24,38 @@ class Dasbor extends CI_Controller
 		$data['title'] = 'Selamat Datang';
 		$data['userSession'] = $this->userSession;
 
-		$data['semesterList'] = $this->db->where('statusSemester', 1)->where('prodiSemester', $this->userSession->prodiUser)->order_by('namaSemester', 'ASC')->get('semester')->result();
-		$data['matkulList'] = $this->db->where('statusMatkul', 1)->where('prodiMatkul', $this->userSession->prodiUser)->join('ip', 'ip.matkulIp = matkul.idMatkul AND ip.userIp = ' . $this->userSession->idUser, 'left')->join('predikat', 'ip.predikatIp = predikat.idPredikat', 'left')->order_by('namaMatkul', 'ASC')->get('matkul')->result();
+		$data['semesterList'] = $this->db
+			->select('semester.*, COUNT(matkul.idMatkul) as totalMatkul, COUNT(ip.idIp) as terisiMatkul, SUM(predikat.angkaPredikat * matkul.sksMatkul) as agregatIp, SUM(matkul.sksMatkul) as totalSks, SUM(CASE WHEN (ip.idIp IS NOT NULL) THEN matkul.sksMatkul ELSE 0 END) as terisiSks')
+			->where('statusSemester', 1)
+			->where('prodiSemester', $this->userSession->prodiUser)
+			->join('matkul', 'matkul.semesterMatkul = semester.idSemester', 'left')
+			->join('ip', 'ip.matkulIp = matkul.idMatkul AND ip.userIp = ' . $this->userSession->idUser, 'left')
+			->join('predikat', 'ip.predikatIp = predikat.idPredikat', 'left')
+			->group_by('semester.namaSemester')
+			->order_by('namaSemester', 'ASC')
+			->get('semester')
+			->result();
 
-		$this->load->view('pages/dasbor/homePage', $data);
+		$data['terisiMatkul'] = 0;
+		$data['terisiSks'] = 0;
+		$data['totalMatkul'] = 0;
+		$data['totalSks'] = 0;
+		$data['agregatIp'] = 0;
+		foreach ($data['semesterList'] as $semesterItem) {
+			$data['totalMatkul'] = $data['totalMatkul'] + $semesterItem->totalMatkul;
+			$data['terisiMatkul'] = $data['terisiMatkul'] + $semesterItem->terisiMatkul;
+			$data['totalSks'] = $data['totalSks'] + $semesterItem->totalSks;
+			$data['terisiSks'] = $data['terisiSks'] + $semesterItem->terisiSks;
+			$data['agregatIp'] = $data['agregatIp'] + $semesterItem->agregatIp;
+		}
+
+		if ($data['terisiSks'] > 0) {
+			$data['totalIpk'] = $data['agregatIp'] / $data['terisiSks'];
+		} else {
+			$data['totalIpk'] = 0;
+		}
+
+		$this->load->view('pages/dasbor/homePage2', $data);
 	}
 
 	public function profil()

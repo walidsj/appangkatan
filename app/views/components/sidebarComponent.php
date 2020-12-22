@@ -36,11 +36,18 @@
             <i class="fas fa-fw fa-globe"></i>
             <span>Prediksi & Simulasi</span></a>
       </li>
-      <?php if ($userSession->roleUser == 1) : ?>
+      <?php if ($userSession->roleUser >= 1) : ?>
          <li class="nav-item <?= ($this->uri->segment(1) == 'admin') ? 'active' : ''; ?>">
             <a class="nav-link" href="<?= site_url(); ?>admin">
                <i class="fas fa-fw fa-university"></i>
                <span>Admin</span></a>
+         </li>
+      <?php endif; ?>
+      <?php if ($userSession->roleUser >= 2) : ?>
+         <li class="nav-item <?= ($this->uri->segment(1) == 'superadmin') ? 'active' : ''; ?>">
+            <a class="nav-link" href="<?= site_url(); ?>superadmin">
+               <i class="fas fa-fw fa-user-astronaut"></i>
+               <span>Super Admin</span></a>
          </li>
       <?php endif; ?>
    </div>

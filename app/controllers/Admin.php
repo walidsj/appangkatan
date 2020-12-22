@@ -13,7 +13,7 @@ class Admin extends CI_Controller
 			if (empty($this->userSession)) {
 				$this->session->set_flashdata('alert', $alert);
 				redirect('paspor');
-				if ($this->userSession->roleUser != 1) {
+				if ($this->userSession->roleUser < 1) {
 					show_404();
 				}
 			}

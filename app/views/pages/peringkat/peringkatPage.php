@@ -86,7 +86,7 @@
                                              <td><?= $userItem['samaranUser']; ?></td>
                                              <td><?= $userItem['totalSks']; ?></td>
                                              <th>
-                                                <?= ($userItem['totalAgregatIp'] / $userItem['totalSks'] > 0) ? number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 2) : '0.0000'; ?>
+                                                <?= ($userItem['totalAgregatIp'] / $userItem['totalSks'] > 0) ? number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 2) : '0.00'; ?>
                                              </th>
                                           </tr>
                                           <?php $noUser++; ?>

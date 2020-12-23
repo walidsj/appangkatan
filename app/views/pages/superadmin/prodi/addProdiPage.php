@@ -31,6 +31,12 @@
                                  <input name="nama" type="text" class="form-control" placeholder="Nama Prodi" value="<?= set_value('nama'); ?>">
                                  <?= form_error('nama'); ?>
                               </div>
+                              <div class="form-group">
+                                 <label>NPM Prodi</label>
+                                 <small class="d-block">Misal: Penilai 230218****, maka masukkan 230218</small>
+                                 <input name="npm" type="text" class="form-control" placeholder="NPM Prodi" value="<?= set_value('npm'); ?>">
+                                 <?= form_error('npm'); ?>
+                              </div>
                               <button type="submit" class="btn btn-primary">Tambah Prodi</button>
                               <a href="<?= site_url(); ?>superadmin" class="btn btn-secondary">Kembali</a>
                               <?= form_close(); ?>

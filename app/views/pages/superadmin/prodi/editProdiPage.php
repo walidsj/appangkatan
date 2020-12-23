@@ -32,6 +32,12 @@
                                  <?= form_error('nama'); ?>
                               </div>
                               <div class="form-group">
+                                 <label>NPM Prodi</label>
+                                 <small class="d-block">Misal: Penilai 230218****, maka masukkan 230218</small>
+                                 <input name="npm" type="text" class="form-control" placeholder="NPM Prodi" value="<?= $prodiItem->npmProdi; ?>">
+                                 <?= form_error('npm'); ?>
+                              </div>
+                              <div class="form-group">
                                  <label>Status</label>
                                  <select name="status" class="form-control">
                                     <option selected>Status Prodi</option>

@@ -152,7 +152,7 @@
                                           <tbody>
                                              <?php foreach ($adminList as $adminItem) : ?>
                                                 <tr>
-                                                   <td><?= $adminItem->namaUser; ?></td>
+                                                   <td><?= $adminItem->samaranUser; ?></td>
                                                    <td><?= $adminItem->npmUser; ?></td>
                                                    <td><?= $adminItem->namaProdi; ?></td>
                                                    <td>

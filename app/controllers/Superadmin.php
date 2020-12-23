@@ -28,13 +28,11 @@ class Superadmin extends CI_Controller
 		$data['title'] = 'You are Superadmin!';
 		$data['userSession'] = $this->userSession;
 		$data['prodiList'] = $this->db->order_by('namaProdi', 'ASC')->get('prodi')->result();
-		// $data['semesterList'] = $this->db->where('prodiSemester', $this->userSession->prodiUser)->order_by('namaSemester', 'ASC')->get('semester')->result();
-		// $data['matkulList'] = $this->db->join('semester', 'matkul.semesterMatkul = semester.idSemester')->where('prodiMatkul', $this->userSession->prodiUser)->order_by('namaSemester', 'ASC')->order_by('namaMatkul', 'ASC')->get('matkul')->result();
 		$data['userCount'] = $this->db->get('user')->num_rows();
 		$data['semesterCount'] = $this->db->get('semester')->num_rows();
 		$data['matkulCount'] = $this->db->get('matkul')->num_rows();
 
-		$data['adminList'] = $this->db->join('prodi', 'prodi.idProdi = user.prodiUser')->where('roleUser', 2)->order_by('namaUser', 'ASC')->get('user')->result();
+		$data['adminList'] = $this->db->join('prodi', 'prodi.idProdi = user.prodiUser')->where('roleUser', 2)->order_by('samaranUser', 'ASC')->get('user')->result();
 
 		$data['pendukungList'] = $this->db->where('prodiPendukung', $this->userSession->prodiUser)->order_by('namaPendukung', 'ASC')->order_by('namaPendukung', 'ASC')->get('pendukung')->result();
 
@@ -73,12 +71,14 @@ class Superadmin extends CI_Controller
 			}
 		} elseif ($action == 'tambah') {
 			$validate->set_rules('nama', 'Nama Prodi', 'required|trim|min_length[3]|max_length[128]');
+			$validate->set_rules('npm', 'NPM Prodi', 'required|numeric|trim|min_length[3]|max_length[128]');
 			if ($validate->run() == false) {
 				$data['title'] = 'Tambah Prodi';
 				$this->load->view('pages/superadmin/prodi/addProdiPage', $data);
 			} else {
 				$prodiData = [
 					'namaProdi' => $this->input->post('nama', true),
+					'npmProdi' => $this->input->post('npm', true),
 					'statusProdi' => 1
 				];
 				$this->db->insert('prodi', $prodiData);
@@ -96,6 +96,7 @@ class Superadmin extends CI_Controller
 				show_404();
 			}
 			$validate->set_rules('nama', 'Nama Prodi', 'required|trim|min_length[3]|max_length[128]');
+			$validate->set_rules('npm', 'NPM Prodi', 'required|numeric|trim|min_length[3]|max_length[128]');
 			$validate->set_rules('status', 'Status', 'required|numeric|trim|exact_length[1]');
 			if ($validate->run() == false) {
 				$data['title'] = 'Edit Prodi';
@@ -103,6 +104,7 @@ class Superadmin extends CI_Controller
 			} else {
 				$prodiData = [
 					'namaProdi' => $this->input->post('nama', true),
+					'npmProdi' => $this->input->post('npm', true),
 					'statusProdi' => $this->input->post('status', true)
 				];
 				$this->db->where('idProdi', $idProdi)->update('prodi', $prodiData);

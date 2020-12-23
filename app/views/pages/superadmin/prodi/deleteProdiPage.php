@@ -34,6 +34,10 @@
                                  <input class="form-control" value="<?= $prodiItem->namaProdi ?>" disabled>
                               </div>
                               <div class="form-group">
+                                 <label>NPM Prodi</label>
+                                 <input class="form-control" value="<?= $prodiItem->npmProdi ?>" disabled>
+                              </div>
+                              <div class="form-group">
                                  <label>Qty Semester</label>
                                  <input class="form-control" value="<?= $this->db->get_where('semester', ['prodiSemester' => $prodiItem->idProdi])->num_rows(); ?>" disabled>
                               </div>

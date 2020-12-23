@@ -105,7 +105,7 @@
                                              <tr style="<?= ($userItem['idUser'] == $userSession->idUser) ? 'background: #f8f0bb' : ''; ?>">
                                                 <th><?= $noUser; ?></th>
                                                 <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?> <?= ($userItem['idUser'] == $userSession->idUser) ? '<small>(me)</small>' : ''; ?></td>
-                                                <td><?= $userItem['nilaiParameter']; ?></td>
+                                                <th><?= $userItem['nilaiParameter']; ?></th>
                                              </tr>
                                              <?php $noUser++; ?>
                                           <?php endforeach; ?>

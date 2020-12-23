@@ -91,7 +91,7 @@
                               </div>
                               <?php if ($userList) : ?>
                                  <div class="table-responsive">
-                                    <table class="datatable table table-bordered table-striped" cellspacing="0">
+                                    <table class="datatable table table-striped table-hover" cellspacing="0">
                                        <thead>
                                           <tr>
                                              <th width="1%">#</th>
@@ -102,7 +102,7 @@
                                        <tbody>
                                           <?php $noUser = 1; ?>
                                           <?php foreach ($userList as $userItem) : ?>
-                                             <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
+                                             <tr style="<?= ($userItem['idUser'] == $userSession->idUser) ? 'background: #f8f0bb' : ''; ?>">
                                                 <th><?= $noUser; ?></th>
                                                 <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?> <?= ($userItem['idUser'] == $userSession->idUser) ? '<small>(me)</small>' : ''; ?></td>
                                                 <td><?= $userItem['nilaiParameter']; ?></td>

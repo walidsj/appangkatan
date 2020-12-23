@@ -58,22 +58,31 @@ class Paspor extends CI_Controller
 			$data['title'] = 'Registrasi Akun';
 			$this->load->view('pages/paspor/registrasiPage', $data);
 		} else {
-			$dataUser = [
-				'samaranUser' => ucwords($this->input->post('samaran', true)),
-				'npmUser' => $this->input->post('npm', true),
-				'passwordUser' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
-				'prodiUser' => $this->input->post('prodi', true),
-				'statusUser' => 1,
-				'statusUser' => 0,
-				'createdUser' => date('Y-m-d H:i:s', now())
-			];
+			$idProdi = $this->input->post('prodi', true);
+			$prodiCheck = $this->db->get_where('prodi', ['idProdi' => $idProdi])->row_array();
+			$npmUser = $this->input->post('npm', true);
 
-			$this->db->insert('user', $dataUser);
-			if ($this->db->affected_rows() > 0) {
-				$this->session->set_flashdata('alert', 'success|Registrasi berhasil|Login untuk mengakses fitur.');
-				redirect('paspor');
+			if (preg_match("/{$prodiCheck['npmProdi']}/i", $npmUser)) {
+				$dataUser = [
+					'samaranUser' => ucwords($this->input->post('samaran', true)),
+					'npmUser' => $npmUser,
+					'passwordUser' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),
+					'prodiUser' => $idProdi,
+					'statusUser' => 1,
+					'statusUser' => 0,
+					'createdUser' => date('Y-m-d H:i:s', now())
+				];
+
+				$this->db->insert('user', $dataUser);
+				if ($this->db->affected_rows() > 0) {
+					$this->session->set_flashdata('alert', 'success|Registrasi berhasil|Login untuk mengakses fitur.');
+					redirect('paspor');
+				} else {
+					$this->session->set_flashdata('alert', 'error|Registrasi gagal|Coba lagi atau hubungi administrator.');
+					redirect(current_url());
+				}
 			} else {
-				$this->session->set_flashdata('alert', 'error|Registrasi gagal|Coba lagi atau hubungi administrator.');
+				$this->session->set_flashdata('alert', 'error|NPM tidak sesuai|Coba lagi atau hubungi administrator.');
 				redirect(current_url());
 			}
 		}

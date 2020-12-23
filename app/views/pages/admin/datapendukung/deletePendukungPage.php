@@ -34,6 +34,10 @@
                                  <input class="form-control" value="<?= $pendukungItem->namaPendukung ?>" disabled>
                               </div>
                               <div class="form-group">
+                                 <label>Proporsi Penilaian %</label>
+                                 <input class="form-control" value="<?= $pendukungItem->proporsiPendukung ?>" disabled>
+                              </div>
+                              <div class="form-group">
                                  <label>Qty Parameter Mahasiswa</label>
                                  <input class="form-control" value="<?= $this->db->get_where('parameter', ['pendukungParameter' => $pendukungItem->idPendukung])->num_rows(); ?>" disabled>
                               </div>

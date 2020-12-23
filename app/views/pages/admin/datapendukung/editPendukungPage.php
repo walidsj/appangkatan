@@ -32,6 +32,11 @@
                                  <?= form_error('nama'); ?>
                               </div>
                               <div class="form-group">
+                                 <label>Proporsi Penilaian %</label>
+                                 <input name="proporsi" type="text" class="form-control" placeholder="Proporsi Penilaian" value="<?= $pendukungItem->proporsiPendukung; ?>">
+                                 <?= form_error('proporsi'); ?>
+                              </div>
+                              <div class="form-group">
                                  <label>Jenis Parameter</label>
                                  <select name="validasi" class="form-control">
                                     <option selected>Pilih Jenis</option>

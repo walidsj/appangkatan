@@ -27,7 +27,7 @@
                               </div>
                               <div class="form-group text-center">
                                  <strong><span class="d-block"><?= $userSession->samaranUser; ?></span></strong>
-                                 <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . 'XX'; ?></span>
+                                 <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . '**'; ?></span>
                                  <span class="d-block"><?= $userSession->namaProdi; ?></span>
                               </div>
                               <?php if ($userList) : ?>
@@ -87,7 +87,7 @@
                                        <thead>
                                           <tr>
                                              <th width="1%">#</th>
-                                             <th>Nama</th>
+                                             <th>NPM</th>
                                              <th>Nilai</th>
                                           </tr>
                                        </thead>
@@ -96,7 +96,7 @@
                                           <?php foreach ($userList as $userItem) : ?>
                                              <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
                                                 <th><?= $noUser; ?></th>
-                                                <td><?= $userItem['samaranUser']; ?></td>
+                                                <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?></td>
                                                 <td><?= $userItem['nilaiParameter']; ?></td>
                                              </tr>
                                              <?php $noUser++; ?>

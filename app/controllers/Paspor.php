@@ -29,7 +29,7 @@ class Paspor extends CI_Controller
 						'statusUser' => $userData->statusUser
 					];
 					$this->session->set_userdata('userSession', $userSession);
-					$this->session->set_flashdata('alert', 'success|Selamat datang!|Halo, ' . $userData->namaUser . '.');
+					$this->session->set_flashdata('alert', 'success|Selamat datang!|Halo, ' . $userData->samaranUser . '.');
 					redirect('dasbor');
 				} else {
 					$this->session->set_flashdata('alert', 'error|Login gagal|Password salah.');

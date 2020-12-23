@@ -91,7 +91,7 @@
                                        <?php foreach ($userList as $userItem) : ?>
                                           <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
                                              <th><?= $noUser; ?></th>
-                                             <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?></td>
+                                             <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?> <?= ($userItem['idUser'] == $userSession->idUser) ? '(me)' : ''; ?></td>
                                              <td><?= ($userItem['totalSks'] / $userItem['totalSks'] > 0) ? $userItem['totalSks'] : '0'; ?></td>
                                              <th>
                                                 <?= ($userItem['totalAgregatIp'] / $userItem['totalSks'] > 0) ? number_format((float)$userItem['totalAgregatIp'] / $userItem['totalSks'], 2) : '0.00'; ?>

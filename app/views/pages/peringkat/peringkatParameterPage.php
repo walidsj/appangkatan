@@ -104,7 +104,7 @@
                                           <?php foreach ($userList as $userItem) : ?>
                                              <tr class="<?= ($userItem['idUser'] == $userSession->idUser) ? 'text-primary' : ''; ?>">
                                                 <th><?= $noUser; ?></th>
-                                                <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?></td>
+                                                <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?> <?= ($userItem['idUser'] == $userSession->idUser) ? '(me)' : ''; ?></td>
                                                 <td><?= $userItem['nilaiParameter']; ?></td>
                                              </tr>
                                              <?php $noUser++; ?>

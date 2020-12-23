@@ -25,12 +25,6 @@ class User_model extends CI_Model
     {
         return [
             [
-                'field' => 'nama',
-                'label' => 'Nama Asli',
-                'rules' => 'required|trim|min_length[4]|max_length[128]',
-                'errors' => []
-            ],
-            [
                 'field' => 'samaran',
                 'label' => 'Nama Samaran',
                 'rules' => 'required|trim|min_length[4]|max_length[128]|is_unique[user.samaranUser]',

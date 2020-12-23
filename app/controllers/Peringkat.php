@@ -26,9 +26,10 @@ class Peringkat extends CI_Controller
 
 		$data['userList'] = $this->db
 			->select('idUser, npmUser, samaranUser, SUM((predikat.angkaPredikat * matkul.sksMatkul)) as totalAgregatIp, SUM(matkul.sksMatkul) as totalSks')
-			->where('prodiUser', $this->userSession->prodiUser)
+			->where('user.prodiUser', $this->userSession->prodiUser)
 			->join('ip', 'ip.userIp = user.idUser', 'left')
 			->join('predikat', 'predikat.idPredikat = ip.predikatIp', 'left')
+			->where('predikat.angkaPredikat IS NOT NULL')
 			->join('matkul', 'matkul.idMatkul = ip.matkulIp', 'left')
 			->group_by('user.idUser')
 			->order_by('totalAgregatIp', 'DESC')

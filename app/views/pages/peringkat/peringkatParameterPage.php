@@ -40,15 +40,23 @@
                                        if ($userList[$i]['idUser'] == $searchId) return $i + 1;
                                     }
 
-                                    return -1;
+                                    return 0;
                                  }
                                  ?>
-                                 <table class="table table-striped">
-                                    <tr>
-                                       <th>Peringkat</th>
-                                       <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
-                                    </tr>
-                                 </table>
+                                 <?php if (peringkatSaya($userList, $userSession->idUser) > 0) : ?>
+                                    <table class="table table-striped">
+                                       <tr>
+                                          <th>Peringkat</th>
+                                          <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
+                                       </tr>
+                                    </table>
+                                 <?php else : ?>
+                                    <table class="table table-striped">
+                                       <tr>
+                                          <td class="small">Tidak dapat menampilkan peringkat jika data belum diisi</td>
+                                       </tr>
+                                    </table>
+                                 <?php endif; ?>
                               <?php endif; ?>
                            </div>
                         </div>

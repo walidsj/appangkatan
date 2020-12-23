@@ -20,15 +20,12 @@
                   <div class="row">
                      <div class="col-12">
                         <div class="p-5">
-                           <div class="text-center">
+                           <div class="text-center mb-4">
                               <img src="<?= base_url(); ?>public/assets/img/icon/knight.png" width="72">
-                              <h1 class="h4 text-gray-900 mb-4 mt-2">Registrasi</h1>
+                              <h1 class="h4 text-gray-900 mb-0 mt-2">Registrasi</h1>
+                              <p class="text-center small">Data yang dimasukkan akan dienkripsi sehingga nggak ada pihak yang bisa lihat.</p>
                            </div>
                            <?= form_open(current_url()); ?>
-                           <div class="form-group">
-                              <input name="nama" type="text" class="form-control" placeholder="Nama Asli" value="<?= set_value('nama'); ?>">
-                              <?= form_error('nama'); ?>
-                           </div>
                            <div class="form-group">
                               <input name="samaran" type="text" class="form-control" placeholder="Nama Samaran" value="<?= set_value('samaran'); ?>">
                               <?= form_error('samaran'); ?>

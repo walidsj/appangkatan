@@ -59,7 +59,6 @@ class Paspor extends CI_Controller
 			$this->load->view('pages/paspor/registrasiPage', $data);
 		} else {
 			$dataUser = [
-				'namaUser' => ucwords($this->input->post('nama', true)),
 				'samaranUser' => ucwords($this->input->post('samaran', true)),
 				'npmUser' => $this->input->post('npm', true),
 				'passwordUser' => password_hash($this->input->post('password', true), PASSWORD_DEFAULT),

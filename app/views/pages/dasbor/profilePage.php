@@ -25,16 +25,12 @@
                                  <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/knight.png" width="144">
                               </div>
                               <div class="form-group">
-                                 <label class="font-weight-bold mb-0">Nama Asli</label>
-                                 <span class="d-block"><?= $userSession->namaUser; ?></span>
-                              </div>
-                              <div class="form-group">
                                  <label class="font-weight-bold mb-0">Nama Samaran</label>
                                  <span class="d-block"><?= $userSession->samaranUser; ?></span>
                               </div>
                               <div class="form-group">
                                  <label class="font-weight-bold mb-0">No. Pokok Mahasiswa</label>
-                                 <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . 'XX'; ?></span>
+                                 <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . '**'; ?></span>
                               </div>
                               <div class="form-group">
                                  <label class="font-weight-bold mb-0">Program Studi</label>

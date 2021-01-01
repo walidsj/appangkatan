@@ -248,6 +248,7 @@ class Admin extends CI_Controller
 		} elseif ($action == 'tambah') {
 			$validate->set_rules('nama', 'Nama Parameter', 'required|trim|min_length[3]|max_length[128]');
 			$validate->set_rules('proporsi', 'Proporsi Parameter', 'required|numeric|trim|max_length[11]');
+			$validate->set_rules('pembagi', 'Pembagi Parameter', 'required|numeric|trim|max_length[11]');
 			$validate->set_rules('validasi', 'Jenis Parameter', 'trim|max_length[128]');
 			if ($validate->run() == false) {
 				$data['title'] = 'Tambah Parameter Pendukung';
@@ -257,6 +258,7 @@ class Admin extends CI_Controller
 					'namaPendukung' => $this->input->post('nama', true),
 					'validasiPendukung' => $this->input->post('validasi', true),
 					'proporsiPendukung' => $this->input->post('proporsi', true),
+					'pembagiPendukung' => $this->input->post('pembagi', true),
 					'prodiPendukung' => $this->userSession->prodiUser,
 					'statusPendukung' => 1
 				];
@@ -279,6 +281,7 @@ class Admin extends CI_Controller
 			}
 			$validate->set_rules('nama', 'Nama Parameter', 'required|trim|min_length[3]|max_length[128]');
 			$validate->set_rules('proporsi', 'Proporsi Parameter', 'required|numeric|trim|max_length[11]');
+			$validate->set_rules('pembagi', 'Pembagi Parameter', 'required|numeric|trim|max_length[11]');
 			$validate->set_rules('validasi', 'Jenis Parameter', 'trim|max_length[128]');
 			$validate->set_rules('status', 'Status', 'required|numeric|trim|exact_length[1]');
 			if ($validate->run() == false) {
@@ -289,6 +292,7 @@ class Admin extends CI_Controller
 					'namaPendukung' => $this->input->post('nama', true),
 					'validasiPendukung' => $this->input->post('validasi', true),
 					'proporsiPendukung' => $this->input->post('proporsi', true),
+					'pembagiPendukung' => $this->input->post('pembagi', true),
 					'statusPendukung' => $this->input->post('status', true)
 				];
 				$this->db->where('idPendukung', $idPendukung)->update('pendukung', $pendukungData);

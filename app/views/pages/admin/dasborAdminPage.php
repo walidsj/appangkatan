@@ -189,6 +189,7 @@
                                                 <th>Judul Parameter Pendukung</th>
                                                 <th>Jenis Data</th>
                                                 <th>Proporsi Penilaian</th>
+                                                <th>Pembagi</th>
                                                 <th>Aksi</th>
                                              </tr>
                                           </thead>
@@ -198,6 +199,7 @@
                                                    <td><?= ($pendukungItem->statusPendukung == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $pendukungItem->namaPendukung; ?></td>
                                                    <td><?= ($pendukungItem->validasiPendukung == '') ? 'bebas' : $pendukungItem->validasiPendukung; ?></td>
                                                    <td><?= $pendukungItem->proporsiPendukung; ?>%</td>
+                                                   <td><?= $pendukungItem->pembagiPendukung; ?></td>
                                                    <td>
                                                       <a href="<?= site_url(); ?>admin/pendukung?action=edit&id=<?= $pendukungItem->idPendukung; ?>" class="btn btn-warning btn-circle btn-sm">
                                                          <i class="fas fa-edit"></i>

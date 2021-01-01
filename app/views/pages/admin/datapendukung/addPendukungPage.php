@@ -32,9 +32,14 @@
                                  <?= form_error('nama'); ?>
                               </div>
                               <div class="form-group">
-                                 <label>Proporsi Penilaian %</label>
+                                 <label>Pembagi (Nilai Maksimal, jika tidak ada isi 1)</label>
                                  <input name="proporsi" type="text" class="form-control" placeholder="Proporsi Penilaian" value="<?= set_value('proporsi'); ?>">
                                  <?= form_error('proporsi'); ?>
+                              </div>
+                              <div class="form-group">
+                                 <label>Proporsi Penilaian %</label>
+                                 <input name="pembagi" type="text" class="form-control" placeholder="Proporsi Penilaian" value="<?= set_value('pembagi'); ?>">
+                                 <?= form_error('pembagi'); ?>
                               </div>
                               <div class="form-group">
                                  <label>Jenis Parameter</label>

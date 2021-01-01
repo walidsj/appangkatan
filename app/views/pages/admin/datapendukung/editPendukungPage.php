@@ -37,6 +37,11 @@
                                  <?= form_error('proporsi'); ?>
                               </div>
                               <div class="form-group">
+                                 <label>Pembagi (Nilai Maksimal, jika tidak ada isi 1)</label>
+                                 <input name="pembagi" type="text" class="form-control" placeholder="Proporsi Penilaian" value="<?= $pendukungItem->pembagiPendukung; ?>">
+                                 <?= form_error('pembagi'); ?>
+                              </div>
+                              <div class="form-group">
                                  <label>Jenis Parameter</label>
                                  <select name="validasi" class="form-control">
                                     <option selected>Pilih Jenis</option>

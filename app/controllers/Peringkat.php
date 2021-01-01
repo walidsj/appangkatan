@@ -96,12 +96,12 @@ class Peringkat extends CI_Controller
 		}
 
 		usort($data['userList'], function ($a, $b) {
-			return $b['totalSks'] <=> $a['totalSks'];
-			return $b['totalSkor'] <=> $a['totalSkor'];
+			if ($a['totalSks'] == $b['totalSks']) {
+				return $b['totalSkor'] - $a['totalSkor'];
+			}
+			return strcmp($b['totalSks'], $a['totalSks']);
+			// return $b['totalSkor'] <=> $a['totalSkor'];
 		});
-
-		// echo json_encode($data['userList']);
-		// die;
 
 		$this->load->view('pages/peringkat/peringkatProporsiPage', $data);
 	}

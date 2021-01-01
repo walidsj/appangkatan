@@ -107,15 +107,15 @@
                                                 <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?> <?= ($userItem['idUser'] == $userSession->idUser) ? '<small>(me)</small>' : ''; ?></td>
                                                 <td><?= ($userItem['totalSks'] / $userItem['totalSks'] > 0) ? $userItem['totalSks'] : '0'; ?></td>
                                                 <th>
-                                                   <?= number_format($userItem['totalIpk'], 2); ?> <small><?= number_format($userItem['totalIpk'] / 4, 2); ?></small>
+                                                   <?= number_format($userItem['totalIpk'], 2); ?> <small><?= number_format($userItem['totalIpk'] / 4 * 100, 2); ?></small>
                                                 </th>
                                                 <?php foreach ($pendukungList as $pendukung) :
                                                    if ($pendukung['proporsiPendukung'] > 0) : ?>
-                                                      <th><?= $userItem['total' . str_replace(' ', '', $pendukung['namaPendukung'])]; ?> <small><?= number_format(($userItem['total' . str_replace(' ', '', $pendukung['namaPendukung'])] / $userItem['pembagi' . str_replace(' ', '', $pendukung['namaPendukung'])]), 2); ?></small></th>
+                                                      <th><?= $userItem['total' . str_replace(' ', '', $pendukung['namaPendukung'])]; ?> <small><?= number_format(($userItem['total' . str_replace(' ', '', $pendukung['namaPendukung'])] / $userItem['pembagi' . str_replace(' ', '', $pendukung['namaPendukung'])]) * 100, 2); ?></small></th>
                                                 <?php endif;
                                                 endforeach; ?>
                                                 <th>
-                                                   <?= number_format($userItem['totalSkor'], 4); ?>
+                                                   <?= number_format($userItem['totalSkor'], 2); ?>
                                                 </th>
                                              </tr>
                                              <?php $noUser++; ?>

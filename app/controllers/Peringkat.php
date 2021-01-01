@@ -65,17 +65,17 @@ class Peringkat extends CI_Controller
 			->result_array();
 
 		$queryTambahan = (string) '';
-		$proporsiIp = (float) 100 / 100;
+		$proporsiIp = (float) 100;
 		foreach ($data['pendukungList'] as $pendukung) {
 			if ($pendukung['proporsiPendukung'] > 0) {
 				$queryTambahan = $queryTambahan . 'SUM(CASE WHEN (parameter.pendukungParameter = ' . $pendukung['idPendukung'] . ') THEN parameter.nilaiParameter ELSE 0 END) as total' . str_replace(' ', '', $pendukung['namaPendukung']) . ',' . 'SUM(CASE WHEN (pendukung.idPendukung = ' . $pendukung['idPendukung'] . ') THEN pendukung.pembagiPendukung ELSE 0 END) as pembagi' . str_replace(' ', '', $pendukung['namaPendukung']) . ',';
 			}
 
-			$proporsiIp = (float) $proporsiIp - $pendukung['proporsiPendukung'] / 100;
+			$proporsiIp = (float) $proporsiIp - $pendukung['proporsiPendukung'];
 		}
 
 		$userParametered = $this->db
-			->select('user.idUser, SUM((parameter.nilaiParameter / pendukung.pembagiPendukung) * (pendukung.proporsiPendukung / 100)) as totalParameter, ' . $queryTambahan)
+			->select('user.idUser, SUM((parameter.nilaiParameter / pendukung.pembagiPendukung) * (pendukung.proporsiPendukung)) as totalParameter, ' . $queryTambahan)
 			->where('user.prodiUser', $this->userSession->prodiUser)
 			->join('parameter', 'user.idUser = parameter.userParameter', 'left')
 			->where('parameter.nilaiParameter IS NOT NULL')
@@ -90,7 +90,7 @@ class Peringkat extends CI_Controller
 			foreach ($userParametered as $userp) {
 				if ($userp['idUser'] == $user['idUser'] && $userp['totalParameter'] > 0) {
 					$userp['totalIpk'] = $user['totalAgregatIp'] / $user['totalSks'];
-					$userp['totalSkor'] = $userp['totalParameter'] + (($user['totalAgregatIp'] / $user['totalSks']) / 4) * $proporsiIp;
+					$userp['totalSkor'] = $userp['totalParameter'] + ($userp['totalIpk'] / 4) * $proporsiIp;
 					array_push($data['userList'], array_merge($user, $userp));
 				}
 			}

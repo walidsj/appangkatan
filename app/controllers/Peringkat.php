@@ -36,9 +36,74 @@ class Peringkat extends CI_Controller
 			->get('user')
 			->result_array();
 
-		$data['matkul'] = $this->db->select('SUM(sksMatkul) as totalSks')->where('prodiMatkul', $this->userSession->prodiUser)->get('matkul')->row_array();
-
 		$this->load->view('pages/peringkat/peringkatPage', $data);
+	}
+
+	public function kombinasi()
+	{
+		$data['title'] = 'Peringkat Kombinasi Nilai';
+		$data['userSession'] = $this->userSession;
+
+		$userListed = $this->db
+			->select('idUser, npmUser, samaranUser, SUM(predikat.angkaPredikat * matkul.sksMatkul) as totalAgregatIp, SUM(matkul.sksMatkul) as totalSks')
+			->where('user.prodiUser', $this->userSession->prodiUser)
+			->join('ip', 'ip.userIp = user.idUser', 'left')
+			->join('predikat', 'predikat.idPredikat = ip.predikatIp', 'left')
+			->where('predikat.angkaPredikat IS NOT NULL')
+			->join('matkul', 'matkul.idMatkul = ip.matkulIp', 'left')
+			->group_by('user.idUser')
+			->order_by('totalAgregatIp', 'DESC')
+			->get('user')
+			->result_array();
+
+		$data['pendukungList'] = $this->db
+			->where('prodiPendukung', $this->userSession->prodiUser)
+			->where('validasiPendukung', 'numeric')
+			->where('proporsiPendukung > 0')
+			->order_by('namaPendukung', 'ASC')
+			->get('pendukung')
+			->result_array();
+
+		$queryTambahan = (string) '';
+		$proporsiIp = (float) 100 / 100;
+		foreach ($data['pendukungList'] as $pendukung) {
+			if ($pendukung['proporsiPendukung'] > 0) {
+				$queryTambahan = $queryTambahan . 'SUM(CASE WHEN (parameter.pendukungParameter = ' . $pendukung['idPendukung'] . ') THEN parameter.nilaiParameter ELSE 0 END) as total' . str_replace(' ', '', $pendukung['namaPendukung'] . ',');
+			}
+
+			$proporsiIp = (float) $proporsiIp - $pendukung['proporsiPendukung'] / 100;
+		}
+
+		$userParametered = $this->db
+			->select('user.idUser, SUM(parameter.nilaiParameter * pendukung.proporsiPendukung / 100) as totalParameter, ' . $queryTambahan)
+			->where('user.prodiUser', $this->userSession->prodiUser)
+			->join('parameter', 'user.idUser = parameter.userParameter', 'left')
+			->where('parameter.nilaiParameter IS NOT NULL')
+			->join('pendukung', 'pendukung.idPendukung = parameter.pendukungParameter', 'left')
+			->group_by('user.idUser')
+			->get('user')
+			->result_array();
+
+		$data['userList'] = [];
+		foreach ($userListed as $user) {
+			foreach ($userParametered as $userp) {
+				if ($userp['idUser'] == $user['idUser'] && $userp['totalParameter'] > 0) {
+					$userp['totalIpk'] = $user['totalAgregatIp'] / $user['totalSks'];
+					$userp['totalSkor'] = $userp['totalParameter'] + $user['totalAgregatIp'] * $proporsiIp / $user['totalSks'];
+					array_push($data['userList'], array_merge($user, $userp));
+				}
+			}
+		}
+
+		usort($data['userList'], function ($a, $b) {
+			return $b['totalSks'] <=> $a['totalSks'];
+			return $b['totalSkor'] <=> $a['totalSkor'];
+		});
+
+		// echo json_encode($data['userList']);
+		// die;
+
+		$this->load->view('pages/peringkat/peringkatProporsiPage', $data);
 	}
 
 	public function parameter()

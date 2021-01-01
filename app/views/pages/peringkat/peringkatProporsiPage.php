@@ -25,51 +25,50 @@
                               <div class="form-group text-center mt-3">
                                  <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/knight.png" width="64">
                               </div>
+
                               <div class="form-group text-center">
                                  <strong><span class="d-block"><?= $userSession->samaranUser; ?></span></strong>
                                  <span class="d-block"><?= substr($userSession->npmUser, 0, -2) . '**'; ?></span>
                                  <span class="d-block"><?= $userSession->namaProdi; ?></span>
                               </div>
-                              <?php if ($userList) : ?>
-                                 <?php
-                                 function peringkatSaya($userList, $searchId)
-                                 {
+                              <?php
+                              function peringkatSaya($userList, $searchId)
+                              {
 
-                                    $userListLen = count($userList);
-                                    for ($i = 0; $i < $userListLen; $i++) {
-                                       if ($userList[$i]['idUser'] == $searchId) return $i + 1;
-                                    }
-
-                                    return 0;
+                                 $userListLen = count($userList);
+                                 for ($i = 0; $i < $userListLen; $i++) {
+                                    if ($userList[$i]['idUser'] == $searchId) return $i + 1;
                                  }
-                                 ?>
-                                 <?php if (peringkatSaya($userList, $userSession->idUser) > 0) : ?>
-                                    <table class="table table-striped">
-                                       <tr>
-                                          <th>Peringkat</th>
-                                          <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
-                                       </tr>
-                                    </table>
-                                 <?php else : ?>
-                                    <table class="table table-striped">
-                                       <tr>
-                                          <td class="small">Tidak dapat menampilkan peringkat jika data belum diisi</td>
-                                       </tr>
-                                    </table>
-                                 <?php endif; ?>
+
+                                 return 0;
+                              }
+                              ?>
+                              <?php if (peringkatSaya($userList, $userSession->idUser) > 0) : ?>
+                                 <table class="table table-striped">
+                                    <tr>
+                                       <th>Peringkat</th>
+                                       <td><?= peringkatSaya($userList, $userSession->idUser); ?> <small>dari <?= count($userList); ?></small></td>
+                                    </tr>
+                                 </table>
+                              <?php else : ?>
+                                 <table class="table table-striped">
+                                    <tr>
+                                       <td class="small">Tidak dapat menampilkan peringkat jika data belum diisi</td>
+                                    </tr>
+                                 </table>
                               <?php endif; ?>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-6">
+                     <div class="col-md-9">
                         <div class="card shadow mb-4">
                            <div class="card-header px-2 pb-0 pt-2">
                               <ul class="nav nav-tabs" role="tablist">
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat/parameter" class="nav-link active" role="tab">Rank Parameter</a>
+                                    <a href="<?= site_url(); ?>peringkat/parameter" class="nav-link" role="tab">Rank Parameter</a>
                                  </li>
                                  <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat/kombinasi" class="nav-link" role="tab">Rank Kombinasi</a>
+                                    <a href="<?= site_url(); ?>peringkat/kombinasi" class="nav-link active" role="tab">Rank Kombinasi</a>
                                  </li>
                                  <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat" class="nav-link" role="tab">Rank IPK</a>
@@ -77,26 +76,27 @@
                               </ul>
                            </div>
                            <div class="card-body">
-                              <div class="form-group mb-4">
-                                 <form class="form-inline">
-                                    <div class="form-group">
-                                       <select name="id" class="form-control">
-                                          <option value="0" selected>Pilih Parameter</option>
-                                          <?php foreach ($pendukungList as $pendukungItem) : ?>
-                                             <option value="<?= $pendukungItem->idPendukung; ?>" <?= ($this->input->get('id', true) == $pendukungItem->idPendukung) ? 'selected' : null; ?>><?= $pendukungItem->namaPendukung; ?></option> <?php endforeach; ?>
-                                       </select>
-                                       <button type="submit" class="mx-2 my-2 btn btn-primary">Pilih</button>
-                                    </div>
-                                 </form>
-                              </div>
-                              <?php if ($userList) : ?>
+                              <?php
+                              $proporsiIpk = 100;
+                              foreach ($pendukungList as $pendukung) {
+                                 $proporsiIpk = $proporsiIpk - $pendukung['proporsiPendukung'];
+                              }; ?>
+
+                              <div class="form-group">
                                  <div class="table-responsive">
                                     <table class="datatable table table-striped table-hover" cellspacing="0">
                                        <thead>
                                           <tr>
                                              <th width="1%">#</th>
                                              <th>NPM</th>
-                                             <th>Nilai</th>
+                                             <th>SKS</th>
+                                             <th>IPK<br><small>(<?= $proporsiIpk; ?>%)</small></th>
+                                             <?php foreach ($pendukungList as $pendukung) :
+                                                if ($pendukung['proporsiPendukung'] > 0) : ?>
+                                                   <th><?= $pendukung['namaPendukung']; ?><br><small>(<?= $pendukung['proporsiPendukung']; ?>%)</small></th>
+                                             <?php endif;
+                                             endforeach; ?>
+                                             <th>Skor Bobot</th>
                                           </tr>
                                        </thead>
                                        <tbody>
@@ -105,22 +105,25 @@
                                              <tr style="<?= ($userItem['idUser'] == $userSession->idUser) ? 'background: #f8f0bb' : ''; ?>">
                                                 <th><?= $noUser; ?></th>
                                                 <td><?= substr($userItem['npmUser'], 0, -2) . '**'; ?> <?= ($userItem['idUser'] == $userSession->idUser) ? '<small>(me)</small>' : ''; ?></td>
-                                                <th><?= $userItem['nilaiParameter']; ?></th>
+                                                <td><?= ($userItem['totalSks'] / $userItem['totalSks'] > 0) ? $userItem['totalSks'] : '0'; ?></td>
+                                                <th>
+                                                   <?= number_format($userItem['totalIpk'], 2); ?>
+                                                </th>
+                                                <?php foreach ($pendukungList as $pendukung) :
+                                                   if ($pendukung['proporsiPendukung'] > 0) : ?>
+                                                      <th><?= $userItem['total' . str_replace(' ', '', $pendukung['namaPendukung'])]; ?></th>
+                                                <?php endif;
+                                                endforeach; ?>
+                                                <th>
+                                                   <?= number_format($userItem['totalSkor'], 2); ?>
+                                                </th>
                                              </tr>
                                              <?php $noUser++; ?>
                                           <?php endforeach; ?>
                                        </tbody>
                                     </table>
                                  </div>
-                              <?php else : ?>
-                                 <div class="form-group text-center mt-3 mb-4">
-                                    <img class="img-fluid" src="<?= base_url(); ?>public/assets/img/icon/execute.png" width="144">
-                                 </div>
-                                 <div class="form-group text-center">
-                                    <h4 class="mb-0">Pilih Parameter</h4>
-                                    <h5>Data Not Found</h5>
-                                 </div>
-                              <?php endif; ?>
+                              </div>
                            </div>
                         </div>
                      </div>

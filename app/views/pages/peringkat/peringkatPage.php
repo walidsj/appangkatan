@@ -67,9 +67,9 @@
                                  <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat/parameter" class="nav-link" role="tab">Rank Parameter</a>
                                  </li>
-                                 <!-- <li class="nav-item">
-                                    <a href="<?= site_url(); ?>peringkat?by=parameter" class="nav-link" role="tab">Nilai IP + Parameter</a>
-                                 </li> -->
+                                 <li class="nav-item">
+                                    <a href="<?= site_url(); ?>peringkat/kombinasi" class="nav-link" role="tab">Rank Kombinasi</a>
+                                 </li>
                                  <li class="nav-item">
                                     <a href="<?= site_url(); ?>peringkat" class="nav-link active" role="tab">Rank IPK</a>
                                  </li>

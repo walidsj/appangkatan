@@ -21,6 +21,11 @@ class Peringkat extends CI_Controller
 	}
 	public function index()
 	{
+		// block access jika tidak ada session konfirmasi
+		if (empty($this->session->peringkatSession)) {
+			redirect('peringkat/konfirmasi');
+		}
+
 		$data['title'] = 'Peringkat Nilai IPK';
 		$data['userSession'] = $this->userSession;
 
@@ -41,6 +46,11 @@ class Peringkat extends CI_Controller
 
 	public function kombinasi()
 	{
+		// block access jika tidak ada session konfirmasi
+		if (empty($this->session->peringkatSession)) {
+			redirect('peringkat/konfirmasi');
+		}
+
 		$data['title'] = 'Peringkat Kombinasi Nilai';
 		$data['userSession'] = $this->userSession;
 
@@ -111,6 +121,11 @@ class Peringkat extends CI_Controller
 
 	public function parameter()
 	{
+		// block access jika tidak ada session konfirmasi
+		if (empty($this->session->peringkatSession)) {
+			redirect('peringkat/konfirmasi');
+		}
+
 		$idPendukung = $this->input->get('id', true);
 
 		$data['title'] = 'Peringkat Nilai Parameter';
@@ -133,5 +148,38 @@ class Peringkat extends CI_Controller
 			$data['userList'] = null;
 		}
 		$this->load->view('pages/peringkat/peringkatParameterPage', $data);
+	}
+
+	public function konfirmasi()
+	{
+		$data['userSession'] = $this->userSession;
+
+		$validate = $this->form_validation;
+		$validate->set_rules('password', 'Password Kamu', 'required|trim');
+		if ($validate->run() == false) {
+			$data['title'] = 'Konfirmasi';
+			$this->load->view('pages/peringkat/peringkatLogin', $data);
+		} else {
+			$passwordUser = $this->input->post('password', true);
+
+			$userData = $this->db->where('npmUser', $this->userSession->npmUser)->get('user')->row();
+			if ($userData) {
+				if (password_verify($passwordUser, $userData->passwordUser)) {
+					$peringkatSession = [
+						'idUser' => $userData->idUser,
+						'npmUser' => $userData->npmUser,
+						'statusUser' => $userData->statusUser
+					];
+					$this->session->set_userdata('peringkatSession', $peringkatSession);
+					redirect('peringkat');
+				} else {
+					$this->session->set_flashdata('alert', 'error|Password Salah|');
+					redirect(current_url());
+				}
+			} else {
+				$this->session->set_flashdata('alert', 'error||User tidak terdaftar.');
+				redirect(current_url());
+			}
+		}
 	}
 }

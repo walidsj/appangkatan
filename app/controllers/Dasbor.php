@@ -63,7 +63,22 @@ class Dasbor extends CI_Controller
 		$data['userSession'] = $this->userSession;
 		$data['title'] = $data['userSession']->samaranUser;
 
-		$this->load->view('pages/dasbor/profilePage', $data);
+		$validate = $this->form_validation;
+
+		$validate->set_rules('samaran', 'Nama Samaran baru', 'required|trim|min_length[4]|max_length[128]|is_unique[user.samaranUser]', ['is_unique' => 'Nama samaran telah dipakai, coba yang lain.']);
+		if ($validate->run() == false) {
+			$this->load->view('pages/dasbor/profilePage', $data);
+		} else {
+			$samaranUser = $this->input->post('samaran', true);
+			$this->db->where('idUser', $this->userSession->idUser)->update('user', ['samaranUser' => $samaranUser]);
+			if ($this->db->affected_rows() > 0) {
+				$this->session->set_flashdata('alert', 'success|Ganti Profil berhasil|Profil berhasil diganti.');
+				redirect(current_url());
+			} else {
+				$this->session->set_flashdata('alert', 'error|Gagal ganti|Coba lagi atau hubungi administrator.');
+				redirect(current_url());
+			}
+		}
 	}
 
 	public function ganti_password()

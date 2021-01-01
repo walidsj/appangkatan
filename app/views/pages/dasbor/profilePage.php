@@ -17,7 +17,7 @@
                <div class="container-fluid">
                   <div class="row">
                      <!-- Content Column -->
-                     <div class="col-lg-4 mb-4">
+                     <div class="col-md-6 col-lg-4">
                         <div class="card shadow mb-4">
                            <!-- Card Body -->
                            <div class="card-body">
@@ -40,6 +40,26 @@
                                  <label class="font-weight-bold mb-0">Tanggal Daftar</label>
                                  <span class="d-block"><?= strftime('%d %B %G', strtotime($userSession->createdUser)); ?></span>
                               </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-6 col-lg-4">
+                        <div class="card shadow mb-4">
+                           <!-- Card Header - Dropdown -->
+                           <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                              <h6 class="m-0 font-weight-bold text-primary">Ganti Profil</h6>
+                           </div>
+                           <!-- Card Body -->
+                           <div class="card-body">
+                              <?= form_open(current_url()); ?>
+                              <div class="form-group">
+                                 <input name="samaran" type="text" class="form-control" placeholder="Nama Samaran Baru" value="<?= set_value('samaran'); ?>">
+                                 <?= form_error('samaran'); ?>
+                              </div>
+                              <div class="form-group">
+                                 <button type="submit" class="btn btn-primary">Ganti</button>
+                              </div>
+                              <?= form_close(); ?>
                            </div>
                         </div>
                      </div>

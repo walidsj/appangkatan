@@ -92,6 +92,7 @@ class Paspor extends CI_Controller
 	{
 		if ($this->session->userSession) {
 			$this->session->unset_userdata('userSession');
+			$this->session->unset_userdata('peringkatSession');
 			$this->session->set_flashdata('alert', 'success|Logout Berhasil|');
 		}
 		redirect('paspor');

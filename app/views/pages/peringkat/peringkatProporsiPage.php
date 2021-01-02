@@ -84,7 +84,7 @@
 
                               <div class="form-group">
                                  <div class="table-responsive">
-                                    <table class="datatable table table-striped table-hover" cellspacing="0">
+                                    <table class="datatable table table-striped" cellspacing="0">
                                        <thead>
                                           <tr>
                                              <th width="1%">#</th>

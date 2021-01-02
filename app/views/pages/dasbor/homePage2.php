@@ -7,7 +7,7 @@
 
 <body>
 
-   <body id="page-top" class="sidebar-toggled">
+   <body id="page-top">
       <div id="wrapper">
          <?php $this->load->view('components/sidebarComponent'); ?>
          <div id="content-wrapper" class="d-flex flex-column">

@@ -94,9 +94,9 @@
                                     <table class="datatable table table-striped" cellspacing="0">
                                        <thead>
                                           <tr>
-                                             <th width="1%">#</th>
-                                             <th>NPM</th>
-                                             <th>Nilai</th>
+                                             <th width="1%" data-priority="1">#</th>
+                                             <th data-priority="2">NPM</th>
+                                             <th data-priority="3">Nilai</th>
                                           </tr>
                                        </thead>
                                        <tbody>

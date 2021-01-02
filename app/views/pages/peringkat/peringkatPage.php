@@ -80,10 +80,10 @@
                                  <table class="datatable table table-striped" cellspacing="0">
                                     <thead>
                                        <tr>
-                                          <th width="1%">#</th>
-                                          <th>NPM</th>
+                                          <th width="1%" data-priority="1">#</th>
+                                          <th data-priority="2">NPM</th>
                                           <th>SKS</th>
-                                          <th>IPK</th>
+                                          <th data-priority="3">IPK</th>
                                        </tr>
                                     </thead>
                                     <tbody>

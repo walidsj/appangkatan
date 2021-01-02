@@ -87,8 +87,8 @@
                                     <table class="datatable table table-striped" cellspacing="0">
                                        <thead>
                                           <tr>
-                                             <th width="1%">#</th>
-                                             <th>NPM</th>
+                                             <th width="1%" data-priority="1">#</th>
+                                             <th data-priority="2">NPM</th>
                                              <th>SKS</th>
                                              <th>IPK<br><small>(<?= $proporsiIpk; ?>%)</small></th>
                                              <?php foreach ($pendukungList as $pendukung) :
@@ -96,7 +96,7 @@
                                                    <th><?= $pendukung['namaPendukung']; ?><br><small>(<?= $pendukung['proporsiPendukung']; ?>%)</small></th>
                                              <?php endif;
                                              endforeach; ?>
-                                             <th>Skor Bobot</th>
+                                             <th data-priority="3">Skor Bobot</th>
                                           </tr>
                                        </thead>
                                        <tbody>

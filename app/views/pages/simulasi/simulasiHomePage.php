@@ -54,9 +54,9 @@
                                                       <thead>
                                                          <tr>
                                                             <th width="60%">Mata Kuliah</th>
-                                                            <th>Pr.UTS</th>
-                                                            <th>Pr.UAS</th>
-                                                            <th>Pr.Akt</th>
+                                                            <th>Pro.UTS</th>
+                                                            <th>Pro.UAS</th>
+                                                            <th>Pro.Akt</th>
                                                          </tr>
                                                       </thead>
                                                       <tbody>
@@ -110,9 +110,9 @@
                                                 <th width="1%">#</th>
                                                 <th>Mata Kuliah</th>
                                                 <th>SKS</th>
-                                                <th>Ni.UTS</th>
-                                                <th>Ni.UAS</th>
-                                                <th>Ni.Akt</th>
+                                                <th>Nil.UTS</th>
+                                                <th>Nil.UAS</th>
+                                                <th>Nil.Akt</th>
                                                 <th>Total Nilai</th>
                                                 <th>Predikat</th>
                                                 <th>Angka</th>

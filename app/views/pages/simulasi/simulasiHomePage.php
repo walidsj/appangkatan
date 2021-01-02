@@ -110,9 +110,9 @@
                                                 <th width="1%">#</th>
                                                 <th>Mata Kuliah</th>
                                                 <th>SKS</th>
-                                                <th>Nilai UTS</th>
-                                                <th>Nilai UAS</th>
-                                                <th>Nilai Akt</th>
+                                                <th>N.UTS</th>
+                                                <th>N.UAS</th>
+                                                <th>N.Akt</th>
                                                 <th>Total Nilai</th>
                                                 <th>Predikat</th>
                                                 <th>Angka</th>

@@ -14,7 +14,7 @@
 <link href="<?= base_url(); ?>public/assets/css/select2.css" rel="stylesheet" type="text/css">
 <link href="<?= base_url(); ?>public/assets/font/style.css" rel="stylesheet" type="text/css">
 
-<link href="<?= base_url(); ?>public/assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/datatables.min.css" />
 
 <!-- Custom styles for this template-->
 <link href="<?= base_url(); ?>public/assets/css/admin.css" rel="stylesheet">

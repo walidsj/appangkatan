@@ -103,18 +103,25 @@
                                  <table class="datatable table table-bordered table-striped" cellspacing="0">
                                     <thead>
                                        <tr>
-                                          <th>Semester</th>
+                                          <th>#</th>
                                           <th>Mata Kuliah</th>
+                                          <th>Semester</th>
                                           <th>SKS</th>
                                           <th>Status</th>
                                           <th>Aksi</th>
                                        </tr>
                                     </thead>
                                     <tbody>
-                                       <?php foreach ($matkulList as $matkulItem) : ?>
+                                       <?php
+                                       $num = 1;
+                                       foreach ($matkulList as $matkulItem) : ?>
                                           <tr>
-                                             <td><?= ($matkulItem->statusSemester == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $matkulItem->namaSemester; ?></td>
+                                             <td><?= $num; ?></td>
                                              <td><?= $matkulItem->namaMatkul; ?></td>
+                                             <td><?= $matkulItem->namaSemester; ?>
+                                                <br>
+                                                <?= ($matkulItem->statusSemester == 1) ? '<small class="badge badge-success">Selesai</small>' : (($matkulItem->statusSemester == 2) ? '<small class="badge badge-primary">Ongoing</small>' : '<small class="badge badge-secondary">Nonaktif</small>'); ?>
+                                             </td>
                                              <td><?= $matkulItem->sksMatkul; ?></td>
                                              <td><?= ($matkulItem->statusMatkul == 1) ? '<span class="badge badge-success">Aktif</span>' : '<span class="badge badge-secondary">Nonaktif</span>'; ?></td>
                                              <td>
@@ -126,7 +133,9 @@
                                                 </a>
                                              </td>
                                           </tr>
-                                       <?php endforeach; ?>
+                                       <?php
+                                          $num++;
+                                       endforeach; ?>
                                     </tbody>
                                  </table>
                               </div>
@@ -149,14 +158,20 @@
                                        <table class="datatable table table-bordered table-striped" cellspacing="0">
                                           <thead>
                                              <tr>
+                                                <th>#</th>
                                                 <th>Nama Semester</th>
+                                                <th>Status</th>
                                                 <th>Aksi</th>
                                              </tr>
                                           </thead>
                                           <tbody>
-                                             <?php foreach ($semesterList as $semesterItem) : ?>
+                                             <?php
+                                             $num = 1;
+                                             foreach ($semesterList as $semesterItem) : ?>
                                                 <tr>
-                                                   <td><?= ($semesterItem->statusSemester == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $semesterItem->namaSemester; ?></td>
+                                                   <td><?= $num; ?></td>
+                                                   <td><?= $semesterItem->namaSemester; ?></td>
+                                                   <td><?= ($semesterItem->statusSemester == 1) ? '<small class="badge badge-success">Selesai</small>' : (($semesterItem->statusSemester == 2) ? '<small class="badge badge-primary">Ongoing</small>' : '<small class="badge badge-secondary">Nonaktif</small>'); ?></td>
                                                    <td>
                                                       <a href="<?= site_url(); ?>admin/semester?action=edit&id=<?= $semesterItem->idSemester; ?>" class="btn btn-warning btn-circle btn-sm">
                                                          <i class="fas fa-edit"></i>
@@ -166,7 +181,9 @@
                                                       </a>
                                                    </td>
                                                 </tr>
-                                             <?php endforeach; ?>
+                                             <?php
+                                                $num++;
+                                             endforeach; ?>
                                           </tbody>
                                        </table>
                                     </div>
@@ -186,20 +203,26 @@
                                        <table class="datatable table table-bordered table-striped" cellspacing="0">
                                           <thead>
                                              <tr>
+                                                <th>#</th>
                                                 <th>Judul Parameter Pendukung</th>
                                                 <th>Jenis Data</th>
                                                 <th>Proporsi Penilaian</th>
                                                 <th>Pembagi</th>
+                                                <th>Status</th>
                                                 <th>Aksi</th>
                                              </tr>
                                           </thead>
                                           <tbody>
-                                             <?php foreach ($pendukungList as $pendukungItem) : ?>
+                                             <?php
+                                             $num = 1;
+                                             foreach ($pendukungList as $pendukungItem) : ?>
                                                 <tr>
-                                                   <td><?= ($pendukungItem->statusPendukung == 1) ? '<i class="fas fa-power-off text-success mr-2"></i>' : '<i class="fas fa-power-off text-secondary mr-2"></i>'; ?> <?= $pendukungItem->namaPendukung; ?></td>
+                                                   <td><?= $num; ?></td>
+                                                   <td><?= $pendukungItem->namaPendukung; ?></td>
                                                    <td><?= ($pendukungItem->validasiPendukung == '') ? 'bebas' : $pendukungItem->validasiPendukung; ?></td>
                                                    <td><?= $pendukungItem->proporsiPendukung; ?>%</td>
                                                    <td><?= $pendukungItem->pembagiPendukung; ?></td>
+                                                   <td><?= ($pendukungItem->statusPendukung == 1) ? '<small class="badge badge-success">Aktif</small>' : '<small class="badge badge-secondary">Nonaktif</small>'; ?> </td>
                                                    <td>
                                                       <a href="<?= site_url(); ?>admin/pendukung?action=edit&id=<?= $pendukungItem->idPendukung; ?>" class="btn btn-warning btn-circle btn-sm">
                                                          <i class="fas fa-edit"></i>
@@ -209,7 +232,9 @@
                                                       </a>
                                                    </td>
                                                 </tr>
-                                             <?php endforeach; ?>
+                                             <?php
+                                                $num++;
+                                             endforeach; ?>
                                           </tbody>
                                        </table>
                                     </div>

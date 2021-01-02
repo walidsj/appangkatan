@@ -12,8 +12,8 @@
 <!-- Vendor plugin JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-<script src="<?= base_url(); ?>public/assets/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="<?= base_url(); ?>public/assets/vendor/datatables/dataTables.bootstrap4.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/r-2.2.6/datatables.min.js"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="<?= base_url(); ?>public/assets/js/sb-admin-2.min.js"></script>
@@ -30,20 +30,13 @@
       type: "any-number",
       targets: 1
    }];
-   $('.datatable').find('th').each(function(i, el) {
-      var $el = $(el);
-      if ($el.is('[data-priority]')) {
-         var defs = {
-            responsivePriority: $el.data('priority'),
-            targets: i
-         };
-         columnDefs.push(defs);
-      }
-   });
-   console.log(columnDefs);
    $('.datatable').DataTable({
-      responsive: true,
-      columnDefs: columnDefs
+      "paging": true,
+      "lengthChange": false,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+      "columnDefs": columnDefs
    });
    $('.dataTables_filter input[type="search"]').css({
       width: '100px',

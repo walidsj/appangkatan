@@ -35,7 +35,8 @@
                                  <label>Status</label>
                                  <select name="status" class="form-control">
                                     <option selected>Status Semester</option>
-                                    <option value="1" <?= ($semesterItem->statusSemester == 1) ? 'selected' : null; ?>>Aktif</option>
+                                    <option value="1" <?= ($semesterItem->statusSemester == 1) ? 'selected' : null; ?>>Selesai</option>
+                                    <option value="2" <?= ($semesterItem->statusSemester == 2) ? 'selected' : null; ?>>Ongoing</option>
                                     <option value="0" <?= ($semesterItem->statusSemester == 0) ? 'selected' : null; ?>>Nonaktif</option>
                                  </select>
                                  <?= form_error('status'); ?>
@@ -51,15 +52,10 @@
                </div>
             </div>
             <?php $this->load->view('components/footerComponent'); ?>
-            <!-- End of Footer -->
 
          </div>
-         <!-- End of Content Wrapper -->
 
       </div>
-      <!-- End of Page Wrapper -->
-
-
       <?php $this->load->view('layouts/scriptLayout'); ?>
    </body>
 

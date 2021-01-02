@@ -1,6 +1,6 @@
-<a class="scroll-to-top rounded" href="#page-top">
+<!-- <a class="scroll-to-top rounded" href="#page-top">
    <i class="fas fa-angle-up"></i>
-</a>
+</a> -->
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?= base_url(); ?>public/assets/vendor/jquery/jquery.min.js"></script>
@@ -30,6 +30,16 @@
       type: "any-number",
       targets: 1
    }];
+   $('.datatable').find('th').each(function(i, el) {
+      var $el = $(el);
+      if ($el.is('[data-priority]')) {
+         var defs = {
+            responsivePriority: $el.data('priority'),
+            targets: i
+         };
+         columnDefs.push(defs);
+      }
+   });
    $('.datatable').DataTable({
       "paging": true,
       "lengthChange": false,

@@ -5,7 +5,7 @@
    <?php $this->load->view('layouts/headLayout'); ?>
 </head>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
    <div id="wrapper">
       <?php $this->load->view('components/sidebarComponent'); ?>
       <div id="content-wrapper" class="d-flex flex-column">

@@ -7,7 +7,7 @@
 
 <body>
 
-   <body id="page-top">
+   <body id="page-top" class="sidebar-toggled">
       <div id="wrapper">
          <?php $this->load->view('components/sidebarComponent'); ?>
          <div id="content-wrapper" class="d-flex flex-column">
@@ -38,7 +38,7 @@
                               </div>
                               <div class="form-group">
                                  <label>Pembagi (Nilai Maksimal, jika tidak ada isi 1)</label>
-                                 <input name="pembagi" type="text" class="form-control" placeholder="Proporsi Penilaian" value="<?= $pendukungItem->pembagiPendukung; ?>">
+                                 <input name="pembagi" type="text" class="form-control" placeholder="Pembagi Nilai" value="<?= $pendukungItem->pembagiPendukung; ?>">
                                  <?= form_error('pembagi'); ?>
                               </div>
                               <div class="form-group">

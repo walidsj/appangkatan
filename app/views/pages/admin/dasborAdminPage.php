@@ -103,8 +103,7 @@
                                  <table class="datatable table table-bordered table-striped" cellspacing="0">
                                     <thead>
                                        <tr>
-                                          <th>#</th>
-                                          <th>Mata Kuliah</th>
+                                          <th data-priority="1">Mata Kuliah</th>
                                           <th>Semester</th>
                                           <th>SKS</th>
                                           <th>Status</th>
@@ -113,10 +112,8 @@
                                     </thead>
                                     <tbody>
                                        <?php
-                                       $num = 1;
                                        foreach ($matkulList as $matkulItem) : ?>
                                           <tr>
-                                             <td><?= $num; ?></td>
                                              <td><?= $matkulItem->namaMatkul; ?></td>
                                              <td><?= $matkulItem->namaSemester; ?>
                                                 <br>
@@ -134,7 +131,6 @@
                                              </td>
                                           </tr>
                                        <?php
-                                          $num++;
                                        endforeach; ?>
                                     </tbody>
                                  </table>
@@ -158,7 +154,6 @@
                                        <table class="datatable table table-bordered table-striped" cellspacing="0">
                                           <thead>
                                              <tr>
-                                                <th>#</th>
                                                 <th>Nama Semester</th>
                                                 <th>Status</th>
                                                 <th>Aksi</th>
@@ -166,10 +161,8 @@
                                           </thead>
                                           <tbody>
                                              <?php
-                                             $num = 1;
                                              foreach ($semesterList as $semesterItem) : ?>
                                                 <tr>
-                                                   <td><?= $num; ?></td>
                                                    <td><?= $semesterItem->namaSemester; ?></td>
                                                    <td><?= ($semesterItem->statusSemester == 1) ? '<small class="badge badge-success">Selesai</small>' : (($semesterItem->statusSemester == 2) ? '<small class="badge badge-primary">Ongoing</small>' : '<small class="badge badge-secondary">Nonaktif</small>'); ?></td>
                                                    <td>
@@ -182,7 +175,6 @@
                                                    </td>
                                                 </tr>
                                              <?php
-                                                $num++;
                                              endforeach; ?>
                                           </tbody>
                                        </table>
@@ -203,7 +195,6 @@
                                        <table class="datatable table table-bordered table-striped" cellspacing="0">
                                           <thead>
                                              <tr>
-                                                <th>#</th>
                                                 <th>Judul Parameter Pendukung</th>
                                                 <th>Jenis Data</th>
                                                 <th>Proporsi Penilaian</th>
@@ -214,10 +205,8 @@
                                           </thead>
                                           <tbody>
                                              <?php
-                                             $num = 1;
                                              foreach ($pendukungList as $pendukungItem) : ?>
                                                 <tr>
-                                                   <td><?= $num; ?></td>
                                                    <td><?= $pendukungItem->namaPendukung; ?></td>
                                                    <td><?= ($pendukungItem->validasiPendukung == '') ? 'bebas' : $pendukungItem->validasiPendukung; ?></td>
                                                    <td><?= $pendukungItem->proporsiPendukung; ?>%</td>
@@ -233,7 +222,6 @@
                                                    </td>
                                                 </tr>
                                              <?php
-                                                $num++;
                                              endforeach; ?>
                                           </tbody>
                                        </table>
@@ -246,20 +234,16 @@
                   </div>
 
                </div>
-               <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Main Content -->
 
             <!-- Footer -->
             <?php $this->load->view('components/footerComponent'); ?>
             <!-- End of Footer -->
 
          </div>
-         <!-- End of Content Wrapper -->
 
       </div>
-      <!-- End of Page Wrapper -->
 
 
       <?php $this->load->view('layouts/scriptLayout'); ?>

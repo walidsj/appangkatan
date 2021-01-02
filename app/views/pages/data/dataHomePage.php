@@ -5,7 +5,7 @@
    <?php $this->load->view('layouts/headLayout'); ?>
 </head>
 
-<body id="page-top">
+<body id="page-top" class="sidebar-toggled">
    <div id="wrapper">
       <?php $this->load->view('components/sidebarComponent'); ?>
       <div id="content-wrapper" class="d-flex flex-column">
@@ -64,7 +64,7 @@
                                        <table class="table table-bordered table-striped" cellspacing="0">
                                           <thead>
                                              <tr>
-                                                <th width="1%">No</th>
+                                                <th width="1%">#</th>
                                                 <th>Mata Kuliah</th>
                                                 <th>SKS</th>
                                                 <th width="1%">Predikat</th>

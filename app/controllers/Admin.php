@@ -158,6 +158,8 @@ class Admin extends CI_Controller
 			$validate->set_rules('nama', 'Nama Matkul', 'required|trim|min_length[3]|max_length[128]');
 			$validate->set_rules('sks', 'SKS Matkul', 'required|numeric|trim|max_length[11]');
 			$validate->set_rules('semester', 'Semester', 'required|trim|numeric|max_length[11]');
+			$validate->set_rules('uts', 'Proporsi UTS', 'required|trim|numeric|max_length[11]');
+			$validate->set_rules('uas', 'Proporsi UAS', 'required|trim|numeric|max_length[11]');
 			if ($validate->run() == false) {
 				$data['title'] = 'Tambah Matkul';
 				$this->load->view('pages/admin/matkul/addMatkulPage', $data);
@@ -166,6 +168,8 @@ class Admin extends CI_Controller
 					'namaMatkul' => $this->input->post('nama', true),
 					'sksMatkul' => $this->input->post('sks', true),
 					'semesterMatkul' => $this->input->post('semester', true),
+					'utsMatkul' => $this->input->post('uts', true),
+					'uasMatkul' => $this->input->post('uas', true),
 					'prodiMatkul' => $this->userSession->prodiUser,
 					'statusMatkul' => 1
 				];
@@ -178,7 +182,7 @@ class Admin extends CI_Controller
 				redirect('admin');
 			}
 		} elseif ($action == 'edit') {
-			$data['semesterList'] = $this->db->where('statusSemester', 1)->get('semester')->result();
+			$data['semesterList'] = $this->db->where('statusSemester > 0')->get('semester')->result();
 			$idMatkul = $this->input->get('id', true);
 			$data['matkulItem'] = $this->db->where('idMatkul', $idMatkul)->get('matkul')->row();
 			if (empty($data['matkulItem'])) {
@@ -190,13 +194,18 @@ class Admin extends CI_Controller
 			$validate->set_rules('nama', 'Nama Matkul', 'required|trim|min_length[3]|max_length[128]');
 			$validate->set_rules('semester', 'Semester', 'required|numeric|max_length[11]');
 			$validate->set_rules('status', 'Status', 'required|numeric|trim|exact_length[1]');
+			$validate->set_rules('uts', 'Proporsi UTS', 'required|trim|numeric|max_length[11]');
+			$validate->set_rules('uas', 'Proporsi UAS', 'required|trim|numeric|max_length[11]');
 			if ($validate->run() == false) {
 				$data['title'] = 'Edit Matkul';
 				$this->load->view('pages/admin/matkul/editMatkulPage', $data);
 			} else {
 				$matkulData = [
 					'namaMatkul' => $this->input->post('nama', true),
+					'sksMatkul' => $this->input->post('sks', true),
 					'semesterMatkul' => $this->input->post('semester', true),
+					'utsMatkul' => $this->input->post('uts', true),
+					'uasMatkul' => $this->input->post('uas', true),
 					'statusMatkul' => $this->input->post('status', true)
 				];
 				$this->db->where('idMatkul', $idMatkul)->update('matkul', $matkulData);

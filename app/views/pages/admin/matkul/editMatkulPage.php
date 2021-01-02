@@ -32,13 +32,29 @@
                                  <?= form_error('nama'); ?>
                               </div>
                               <div class="form-group">
+                                 <label>SKS Matkul</label>
+                                 <input name="sks" type="text" class="form-control" placeholder="SKS Matkul" value="<?= $matkulItem->sksMatkul; ?>">
+                                 <?= form_error('sks'); ?>
+                              </div>
+                              <div class="form-group">
                                  <label>Semester</label>
                                  <select name="semester" class="form-control">
                                     <option selected>Semester</option>
                                     <?php foreach ($semesterList as $semesterItem) : ?>
-                                       <option value="<?= $semesterItem->idSemester; ?>" <?= ($matkulItem->semesterMatkul == $semesterItem->idSemester) ? 'selected' : null; ?>><?= $semesterItem->namaSemester; ?></option> <?php endforeach; ?>
+                                       <option value="<?= $semesterItem->idSemester; ?>" <?= ($matkulItem->semesterMatkul == $semesterItem->idSemester) ? 'selected' : null; ?>><?= $semesterItem->namaSemester; ?></option>
+                                    <?php endforeach; ?>
                                  </select>
                                  <?= form_error('semester'); ?>
+                              </div>
+                              <div class="form-group">
+                                 <label>Proporsi UTS (%)</label>
+                                 <input name="uts" type="text" class="form-control" placeholder="Proporsi UTS" value="<?= $matkulItem->utsMatkul; ?>">
+                                 <?= form_error('uts'); ?>
+                              </div>
+                              <div class="form-group">
+                                 <label>Proporsi UAS (%)</label>
+                                 <input name="uas" type="text" class="form-control" placeholder="Proporsi UAS" value="<?= $matkulItem->uasMatkul; ?>">
+                                 <?= form_error('uas'); ?>
                               </div>
                               <div class="form-group">
                                  <label>Status</label>

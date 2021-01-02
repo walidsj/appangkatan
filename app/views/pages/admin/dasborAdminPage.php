@@ -106,6 +106,7 @@
                                           <th data-priority="1">Mata Kuliah</th>
                                           <th>Semester</th>
                                           <th>SKS</th>
+                                          <th>Proporsi</th>
                                           <th>Status</th>
                                           <th>Aksi</th>
                                        </tr>
@@ -120,6 +121,7 @@
                                                 <?= ($matkulItem->statusSemester == 1) ? '<small class="badge badge-success">Selesai</small>' : (($matkulItem->statusSemester == 2) ? '<small class="badge badge-primary">Ongoing</small>' : '<small class="badge badge-secondary">Nonaktif</small>'); ?>
                                              </td>
                                              <td><?= $matkulItem->sksMatkul; ?></td>
+                                             <td><small class="badge badge-primary"><?= $matkulItem->utsMatkul; ?>%</small> <small class="badge badge-success"><?= $matkulItem->uasMatkul; ?>%</small> <small class="badge badge-warning"><?= 100 - ($matkulItem->utsMatkul + $matkulItem->uasMatkul); ?>%</small></td>
                                              <td><?= ($matkulItem->statusMatkul == 1) ? '<span class="badge badge-success">Aktif</span>' : '<span class="badge badge-secondary">Nonaktif</span>'; ?></td>
                                              <td>
                                                 <a href="<?= site_url(); ?>admin/matkul?action=edit&id=<?= $matkulItem->idMatkul; ?>" class="btn btn-warning btn-circle btn-sm">

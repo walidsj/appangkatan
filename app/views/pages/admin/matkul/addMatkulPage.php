@@ -45,6 +45,16 @@
                                  </select>
                                  <?= form_error('semester'); ?>
                               </div>
+                              <div class="form-group">
+                                 <label>Proporsi UTS (%)</label>
+                                 <input name="uts" type="number" class="form-control" placeholder="Proporsi UTS" value="<?= set_value('uts'); ?>">
+                                 <?= form_error('uts'); ?>
+                              </div>
+                              <div class="form-group">
+                                 <label>Proporsi UAS (%)</label>
+                                 <input name="uas" type="number" class="form-control" placeholder="Proporsi UAS" value="<?= set_value('uas'); ?>">
+                                 <?= form_error('uas'); ?>
+                              </div>
                               <button type="submit" class="btn btn-primary">Tambah Matkul</button>
                               <a href="<?= site_url(); ?>admin" class="btn btn-secondary">Kembali</a>
                               <?= form_close(); ?>

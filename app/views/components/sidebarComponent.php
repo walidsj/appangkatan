@@ -31,10 +31,10 @@
             <i class="fas fa-fw fa-trophy"></i>
             <span>Peringkat</span></a>
       </li>
-      <li class="nav-item <?= ($this->uri->segment(1) == 'prediksi') ? 'active' : ''; ?>">
-         <a class="nav-link" href="<?= site_url(); ?>prediksi">
+      <li class="nav-item <?= ($this->uri->segment(1) == 'simulasi') ? 'active' : ''; ?>">
+         <a class="nav-link" href="<?= site_url(); ?>simulasi">
             <i class="fas fa-fw fa-globe"></i>
-            <span>Prediksi & Simulasi</span></a>
+            <span>Simulasi</span></a>
       </li>
       <?php if ($userSession->roleUser >= 1) : ?>
          <li class="nav-item <?= ($this->uri->segment(1) == 'admin') ? 'active' : ''; ?>">

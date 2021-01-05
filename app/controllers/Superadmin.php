@@ -140,7 +140,7 @@ class Superadmin extends CI_Controller
 				$userCheck = $this->db->get_where('user', ['npmUser' => $npmUser])->row_array();
 				if ($userCheck) {
 					$updateUser = [
-						'roleUser' => 2
+						'roleUser' => 1
 					];
 					$this->db->where('npmUser', $npmUser)->update('user', $updateUser);
 					if ($this->db->affected_rows() > 0) {

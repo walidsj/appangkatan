@@ -153,7 +153,7 @@ class Admin extends CI_Controller
 				redirect('admin');
 			}
 		} elseif ($action == 'tambah') {
-			$data['semesterList'] = $this->db->where('statusSemester', 1)->get('semester')->result();
+			$data['semesterList'] = $this->db->where('prodiSemester', $this->userSession->prodiUser)->where('statusSemester', 1)->get('semester')->result();
 
 			$validate->set_rules('nama', 'Nama Matkul', 'required|trim|min_length[3]|max_length[128]');
 			$validate->set_rules('sks', 'SKS Matkul', 'required|numeric|trim|max_length[11]');
@@ -182,7 +182,7 @@ class Admin extends CI_Controller
 				redirect('admin');
 			}
 		} elseif ($action == 'edit') {
-			$data['semesterList'] = $this->db->where('statusSemester > 0')->get('semester')->result();
+			$data['semesterList'] = $this->db->where('prodiSemester', $this->userSession->prodiUser)->where('statusSemester > 0')->get('semester')->result();
 			$idMatkul = $this->input->get('id', true);
 			$data['matkulItem'] = $this->db->where('idMatkul', $idMatkul)->get('matkul')->row();
 			if (empty($data['matkulItem'])) {

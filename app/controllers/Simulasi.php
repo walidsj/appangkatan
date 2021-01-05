@@ -33,7 +33,7 @@ class Simulasi extends CI_Controller
 		if ($idSemester) {
 			$data['matkulList'] = $this->db->where('statusMatkul', 1)->where('prodiMatkul', $this->userSession->prodiUser)->where('semesterMatkul', $idSemester)->join('nilai', 'nilai.matkulNilai = matkul.idMatkul AND nilai.userNilai = ' . $this->userSession->idUser, 'left')->order_by('namaMatkul', 'ASC')->get('matkul')->result();
 		} else {
-			$semester = $this->db->where('statusSemester', 2)->order_by('namaSemester', 'DESC')->get_where('semester')->row();
+			$semester = $this->db->where('statusSemester', 2)->where('prodiMatkul', $this->userSession->prodiUser)->order_by('namaSemester', 'DESC')->get_where('semester')->row();
 			$data['selectedSemester'] = $semester->idSemester;
 			$data['matkulList'] = $this->db->where('statusMatkul', 1)->where('prodiMatkul', $this->userSession->prodiUser)->where('semesterMatkul', $semester->idSemester)->join('nilai', 'nilai.matkulNilai = matkul.idMatkul AND nilai.userNilai = ' . $this->userSession->idUser, 'left')->order_by('namaMatkul', 'ASC')->get('matkul')->result();
 		}

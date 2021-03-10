@@ -63,7 +63,7 @@
                            </div>
                            <hr>
                            <div class="text-center">
-                              Created by Walid <a href="https://instagram.com/pagiwalid">Penilai 18</a>, tidak terafiliasi dengan bimbel manapun.
+                              Dibuat oleh <a href="https://instagram.com/pagiwalid">Walid Penilai 18</a>, tidak terafiliasi dengan bimbel manapun. Hosting melalui BEM.
                            </div>
                         </div>
                      </div>

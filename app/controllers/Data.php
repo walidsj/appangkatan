@@ -33,8 +33,10 @@ class Data extends CI_Controller
 		if ($idSemester) {
 			$data['matkulList'] = $this->db->where('statusMatkul', 1)->where('prodiMatkul', $this->userSession->prodiUser)->where('semesterMatkul', $idSemester)->join('ip', 'ip.matkulIp = matkul.idMatkul AND ip.userIp = ' . $this->userSession->idUser, 'left')->join('predikat', 'ip.predikatIp = predikat.idPredikat', 'left')->order_by('namaMatkul', 'ASC')->get('matkul')->result();
 		} else {
-			$semester = $this->db->where('statusSemester', 1)->order_by('namaSemester', 'DESC')->get_where('semester')->row();
+			$semester = $this->db->where('statusSemester', 1)->where('idSemester', $this->userSession->prodiUser)->order_by('namaSemester', 'DESC')->get_where('semester')->row();
+
 			$data['selectedSemester'] = $semester->idSemester;
+
 			$data['matkulList'] = $this->db->where('statusMatkul', 1)->where('prodiMatkul', $this->userSession->prodiUser)->where('semesterMatkul', $semester->idSemester)->join('ip', 'ip.matkulIp = matkul.idMatkul AND ip.userIp = ' . $this->userSession->idUser, 'left')->join('predikat', 'ip.predikatIp = predikat.idPredikat', 'left')->order_by('namaMatkul', 'ASC')->get('matkul')->result();
 		}
 

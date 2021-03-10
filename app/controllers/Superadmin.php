@@ -32,7 +32,7 @@ class Superadmin extends CI_Controller
 		$data['semesterCount'] = $this->db->get('semester')->num_rows();
 		$data['matkulCount'] = $this->db->get('matkul')->num_rows();
 
-		$data['adminList'] = $this->db->join('prodi', 'prodi.idProdi = user.prodiUser')->where('roleUser', 2)->order_by('samaranUser', 'ASC')->get('user')->result();
+		$data['adminList'] = $this->db->join('prodi', 'prodi.idProdi = user.prodiUser')->where('roleUser', 1)->order_by('samaranUser', 'ASC')->get('user')->result();
 
 		$data['pendukungList'] = $this->db->where('prodiPendukung', $this->userSession->prodiUser)->order_by('namaPendukung', 'ASC')->order_by('namaPendukung', 'ASC')->get('pendukung')->result();
 

@@ -139,6 +139,7 @@
                                  <!-- Card Body -->
                                  <div class="card-body">
                                     <a href="<?= site_url(); ?>superadmin/admin/tambah" class="btn btn-primary mb-3">Tambah Admin</a>
+                                    <a href="<?= site_url(); ?>superadmin/resetpassword" class="btn btn-primary mb-3">Reset Password User</a>
                                     <div class="table-responsive">
                                        <table class="datatable table table-bordered table-striped" cellspacing="0">
                                           <thead>

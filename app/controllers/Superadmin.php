@@ -188,6 +188,39 @@ class Superadmin extends CI_Controller
 		}
 	}
 
+	public function resetpassword()
+	{
+		$validate = $this->form_validation;
+
+		$data['userSession'] = $this->userSession;
+
+		$data['title'] = 'Reset Password';
+
+		$validate->set_rules('npm', 'NPM Mahasiswa', 'required|trim|numeric|max_length[16]');
+		if ($validate->run() == false) {
+			$this->load->view('pages/superadmin/resetPasswordUser', $data);
+		} else {
+			$npmUser = $this->input->post('npm', true);
+			$userCheck = $this->db->get_where('user', ['npmUser' => $npmUser])->row_array();
+			if ($userCheck) {
+				$updateUser = [
+					'passwordUser' => password_hash($npmUser, PASSWORD_DEFAULT)
+				];
+				$this->db->where('npmUser', $npmUser)->update('user', $updateUser);
+				if ($this->db->affected_rows() > 0) {
+					$this->session->set_flashdata('alert', 'success|Berhasil direset|');
+					redirect('superadmin');
+				} else {
+					$this->session->set_flashdata('alert', 'error|Gagal direset|');
+					redirect(current_url());
+				}
+			} else {
+				$this->session->set_flashdata('alert', 'error|User tidak ada|');
+				redirect(current_url());
+			}
+		}
+	}
+
 	// public function matkul()
 	// {
 	// 	$data['userSession'] = $this->userSession;

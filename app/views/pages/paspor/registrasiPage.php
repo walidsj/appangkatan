@@ -61,6 +61,10 @@
                            <div class="text-center">
                               <a class="small" href="<?= site_url(); ?>paspor">Sudah punya akun? Login</a>
                            </div>
+                           <hr>
+                           <div class="text-center">
+                              Created by Walid <a href="https://instagram.com/pagiwalid">Penilai 18</a>, tidak terafiliasi dengan bimbel manapun.
+                           </div>
                         </div>
                      </div>
                   </div>
